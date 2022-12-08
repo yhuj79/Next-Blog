@@ -1,7 +1,13 @@
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+
 export default function Home() {
   return (
     <div>
-      <h1>Note App</h1>
+      <Head>
+        <title>Home | Next Note App</title>
+      </Head>
     </div>
   );
 }

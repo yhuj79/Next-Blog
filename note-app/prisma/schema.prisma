@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model Posting{
+  id Int @id @default(autoincrement())
+  title String
+  content String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -1,17 +1,15 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
-import Layout from "../components/Layout";
-import { useEffect } from "react";
+import "semantic-ui-css/semantic.min.css";
+import Top from "../src/components/Top";
+import Bottom from "../src/components/Bottom";
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    require("bootstrap/dist/js/bootstrap.bundle.min.js");
-  }, []);
-
   return (
-    <Layout>
+    <div>
+      <Top />
       <Component {...pageProps} />
-    </Layout>
+      <Bottom />
+    </div>
   );
 }
 
