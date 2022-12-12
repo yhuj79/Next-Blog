@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 export default async function ApiPost(req, res) {
   const posting = await prisma.posting.create({
     data: {
-      title: "six title!!",
-      content: "6api6 6post6 6test6",
+      title: "First Post",
+      content: "Next JS 첫번째 포스트 입니다.",
     },
   });
   res.json({ ok: true });
