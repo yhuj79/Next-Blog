@@ -1,35 +1,36 @@
-import axios from "axios"
-import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
-
-export async function getData(){
-  const { data } = await axios.get(
-    "api/posting"
-  );
-  console.log("data loaded");
-  console.log(data);
-  return data;
-};
+import Axios from "axios";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 export default function apitest() {
-  console.log(JSON.stringify(getData(), null, 5));
+  const router = useRouter();
+  const [posting, setPosting] = useState({});
+
+  function getData() {
+    Axios.get("/api/read").then((res) => {
+      setPosting(res.data);
+      console.log(res.data);
+    });
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  async function onPostClick() {
+    await Axios.post("/api/post");
+    window.location.reload();
+  }
+
+  function goAbout() {
+    router.push("/about");
+  }
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <h1>apitest</h1>
-        <button
-          onClick={() => add()}
-          style={{ backgroundColor: "black", margin: "10px" }}
-        >
-          Add
-        </button>
-      </div>
-      <textarea
-        defaultValue={JSON.stringify(getData(), null, 5)}
-        rows="70"
-        cols="140"
-      />
+      <button onClick={onPostClick}>Add</button>
+      <button onClick={goAbout}>About</button>
+      <p>{JSON.stringify(posting)}</p>
     </div>
   );
 }
