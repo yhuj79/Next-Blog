@@ -1,8 +1,9 @@
+import Head from "next/head";
 import Axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 
-export default function apitest() {
+export default function Home() {
   const router = useRouter();
   const [posting, setPosting] = useState({});
 
@@ -28,6 +29,10 @@ export default function apitest() {
 
   return (
     <div>
+      <Head>
+        <title>Home | client</title>
+      </Head>
+      <h1>Client</h1>
       <button onClick={onPostClick}>Add</button>
       <button onClick={goAbout}>About</button>
       <p>{JSON.stringify(posting)}</p>

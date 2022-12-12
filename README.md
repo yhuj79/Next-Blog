@@ -1,2 +1,2 @@
-# Next-Note-App
+# Next-Blog
 with Next.js

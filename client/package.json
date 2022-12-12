@@ -1,5 +1,5 @@
 {
-  "name": "note-app",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -12,12 +12,8 @@
     "@prisma/client": "^4.7.1",
     "axios": "^1.2.1",
     "next": "13.0.6",
-    "node-fetch": "^2.6.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "semantic-ui-css": "^2.5.0",
-    "semantic-ui-react": "^2.1.4",
-    "swr": "^2.0.0"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "prisma": "^4.7.1"
