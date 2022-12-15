@@ -1,8 +1,12 @@
 import { Header, Icon, Button } from "semantic-ui-react";
 import Gnb from "./Gnb";
 import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Top() {
+  const { data: session } = useSession();
+  console.log(session);
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

@@ -1,10 +1,34 @@
 import Head from "next/head";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
 
 export default function Login() {
+  const { data: session, status } = useSession();
+
+  // console.log(JSON.stringify(session, null, 5));
+
+  if (status === "authenticated") {
+    console.log(session.user.name);
+    console.log(session.user.email);
+  }
+
+  if (session) {
+    return;
+    <div>
+      Signed in as {session.user.email}
+      <br />
+      <Button
+        content="Sign out"
+        icon="signout"
+        size="big"
+        onClick={() => signOut()}
+      />
+    </div>;
+  }
+
   return (
     <Segment placeholder>
-            <Head>
+      <Head>
         <title>Login | Next-Blog</title>
       </Head>
       <Grid columns={2} relaxed="very" stackable>
@@ -28,11 +52,16 @@ export default function Login() {
         </Grid.Column>
 
         <Grid.Column verticalAlign="middle">
-          <Button content="Sign up" icon="signup" size="big" />
+          <Button
+            content="Google"
+            icon="signup"
+            size="big"
+            onClick={() => signIn()}
+          />
         </Grid.Column>
       </Grid>
 
-      <Divider vertical>Or</Divider>
+      <Divider vertical>Account</Divider>
     </Segment>
   );
 }
