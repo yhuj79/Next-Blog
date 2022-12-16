@@ -4,8 +4,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Top() {
-  const { data: session } = useSession();
-  console.log(session);
+  const { data: session, status } = useSession();
 
   return (
     <div>
@@ -22,14 +21,23 @@ export default function Top() {
           </Header>
         </Link>
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
-          <Link href="/login">
-            <Button animated>
-              <Button.Content visible>Login</Button.Content>
+          {status === "authenticated" ? (
+            <Button animated onClick={() => signOut()}>
+              <Button.Content visible>Logout</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
               </Button.Content>
             </Button>
-          </Link>
+          ) : (
+            <Link href="/login">
+              <Button animated>
+                <Button.Content visible>Login</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="arrow right" />
+                </Button.Content>
+              </Button>
+            </Link>
+          )}
           <Button animated="vertical">
             <Button.Content hidden>Vertical</Button.Content>
             <Button.Content visible>

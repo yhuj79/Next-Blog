@@ -9,7 +9,14 @@ export default function Home() {
   useEffect(() => {
     Axios.get("/api/read").then((res) => {
       setPosting(res.data);
-      console.log(res.data);
+      console.log("read : ", res.data);
+    });
+  }, []);
+
+  // TEST /api/account
+  useEffect(() => {
+    Axios.get("/api/account").then((res) => {
+      console.log("account : ", JSON.stringify(res.data, null, 5));
     });
   }, []);
 
