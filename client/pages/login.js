@@ -6,8 +6,7 @@ export default function Login() {
   const { data: session, status } = useSession();
 
   if (status === "authenticated") {
-    console.log(session.user.name);
-    console.log(session.user.email);
+    console.log(JSON.stringify(session, null, 5));
   }
 
   if (status === "authenticated") {

@@ -22,12 +22,15 @@ export default function Top() {
         </Link>
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
           {status === "authenticated" ? (
-            <Button animated onClick={() => signOut()}>
-              <Button.Content visible>Logout</Button.Content>
-              <Button.Content hidden>
-                <Icon name="arrow right" />
-              </Button.Content>
-            </Button>
+            <div style={{ display: "flex" }}>
+              <p>{session.user.email}</p>
+              <Button animated onClick={() => signOut()}>
+                <Button.Content visible>Logout</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="arrow right" />
+                </Button.Content>
+              </Button>
+            </div>
           ) : (
             <Link href="/login">
               <Button animated>
