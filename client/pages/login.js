@@ -47,7 +47,7 @@ export default function Login() {
               content="Google"
               icon="signup"
               size="big"
-              onClick={() => signIn()}
+              onClick={() => signIn("google")}
             />
           </Grid.Column>
         </Grid>
