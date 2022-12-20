@@ -1,10 +1,14 @@
-import { Header, Icon, Button } from "semantic-ui-react";
+import { Image, Header, Icon, Button } from "semantic-ui-react";
 import Gnb from "./Gnb";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Top() {
   const { data: session, status } = useSession();
+
+  if (status === "authenticated") {
+    console.log(JSON.stringify(session, null, 5));
+  }
 
   return (
     <div>
@@ -23,34 +27,35 @@ export default function Top() {
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
           {status === "authenticated" ? (
             <div style={{ display: "flex" }}>
-              <p>{session.user.email}</p>
-              <Button animated onClick={() => signOut()}>
-                <Button.Content visible>Logout</Button.Content>
+              <Button animated="fade" onClick={() => signOut()}>
+                <Button.Content visible>
+                  <Image src={session.user.image} avatar />
+                  <span>&nbsp;{session.user.name}</span>
+                </Button.Content>
+                <Button.Content hidden>Logout</Button.Content>
+              </Button>
+              <Button animated>
+                <Button.Content visible>
+                  <Icon name="info circle" />
+                  Info
+                </Button.Content>
                 <Button.Content hidden>
                   <Icon name="arrow right" />
                 </Button.Content>
               </Button>
             </div>
           ) : (
-            <Link href="/login">
-              <Button animated>
-                <Button.Content visible>Login</Button.Content>
-                <Button.Content hidden>
-                  <Icon name="arrow right" />
-                </Button.Content>
-              </Button>
-            </Link>
+            <Button animated="fade" onClick={() => signIn("google")}>
+              <Button.Content visible>
+                <Icon name="google" color="blue" />
+                Sign in with Google
+              </Button.Content>
+              <Button.Content hidden>
+                <Icon name="google" color="red" />
+                Sign in with Google
+              </Button.Content>
+            </Button>
           )}
-          <Button animated="vertical">
-            <Button.Content hidden>Vertical</Button.Content>
-            <Button.Content visible>
-              <Icon name="sitemap" />
-            </Button.Content>
-          </Button>
-          <Button animated="fade">
-            <Button.Content visible>Fade</Button.Content>
-            <Button.Content hidden>Text</Button.Content>
-          </Button>
         </div>
       </div>
       <Gnb />
