@@ -46,6 +46,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  posting       Posting[]
 }
 
 model VerificationToken {
@@ -59,7 +60,13 @@ model VerificationToken {
 model Posting{
   id Int @id @default(autoincrement())
   title String
+  category String
   content String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  published Boolean @default(false)
+  author    User   @relation(fields: [userId], references: [id])
+  userId  String
+
+  @@index([userId])
 }

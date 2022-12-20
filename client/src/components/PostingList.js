@@ -13,7 +13,7 @@ export default function PostingList({ posting }) {
             </Item.Meta>
             <Item.Description>{m.createdAt}</Item.Description>
             <Item.Extra>
-              <Label>category</Label>
+              <Label>{m.category}</Label>
             </Item.Extra>
           </Item.Content>
         </Item>

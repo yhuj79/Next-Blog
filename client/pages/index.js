@@ -1,6 +1,7 @@
 import Axios from "axios";
 import Head from "next/head";
 import { useState, useEffect } from "react";
+import { TextArea, Button } from "semantic-ui-react";
 import PostingList from "../src/components/PostingList";
 
 export default function Home() {
@@ -26,15 +27,26 @@ export default function Home() {
   }
 
   return (
-    <div style={{ margin: "30px" }}>
+    <div style={{ margin: 30, display: "flex" }}>
       <Head>
         <title>Home | Next-Blog</title>
       </Head>
-      <h1>JSON</h1>
-      <button onClick={onClick}>Add Post</button>
-      <p>{JSON.stringify(posting)}</p>
-      <h1>My Post</h1>
-      <PostingList posting={posting} />
+      <div>
+        <h1>JSON</h1>
+        <TextArea
+          value={JSON.stringify(posting, null, 5)}
+          rows={50}
+          cols={50}
+        />
+      </div>
+      <div style={{ marginLeft: 30 }}>
+        <Button onClick={onClick}>Add Post</Button>
+        {posting ? (
+          <PostingList posting={posting} />
+        ) : (
+          <h1>로그인이 필요합니다.</h1>
+        )}
+      </div>
     </div>
   );
 }

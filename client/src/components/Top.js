@@ -7,7 +7,7 @@ export default function Top() {
   const { data: session, status } = useSession();
 
   if (status === "authenticated") {
-    console.log(JSON.stringify(session, null, 5));
+    console.log("session : ", JSON.stringify(session, null, 5));
   }
 
   return (
