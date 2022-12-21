@@ -7,7 +7,7 @@ import Bottom from "../src/components/Bottom";
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <div style={{ width: 1000, margin: "0 auto" }}>
+      <div style={{ width: 950, margin: "0 auto" }}>
         <Top />
         <Component {...pageProps} />
         <Bottom />

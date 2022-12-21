@@ -5,7 +5,7 @@ export default async function ApiRead(req, res) {
   const session = await getSession({ req });
 
   if (session) {
-    const posting = await prisma.posting.findMany({
+    const post = await prisma.post.findMany({
       where: {
         author: { email: session.user.email },
         published: false,
@@ -16,7 +16,7 @@ export default async function ApiRead(req, res) {
         },
       },
     });
-    res.json(posting);
+    res.json(post);
   } else {
     res.json(null);
   }

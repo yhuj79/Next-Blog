@@ -3,13 +3,14 @@ import { getSession } from "next-auth/react";
 
 export default async function ApiPost(req, res) {
   const session = await getSession({ req });
+  const { title, category, content } = req.body;
 
   if (session) {
-    const posting = await prisma.posting.create({
+    const post = await prisma.post.create({
       data: {
-        title: "Fourth Post",
-        category: "React",
-        content: "Next JS 네번째 포스트 입니다.",
+        title: title,
+        category: category,
+        content: content,
         author: { connect: { email: session?.user?.email } },
       },
     });
