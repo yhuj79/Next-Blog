@@ -61,6 +61,7 @@ model Post{
   id Int @id @default(autoincrement())
   title String
   category String
+  desc String
   content String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

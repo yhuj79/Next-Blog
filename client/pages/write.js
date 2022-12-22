@@ -11,22 +11,28 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 export default function Write() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
 
   function handle() {
     console.log("title : ", title);
     console.log("category : ", category);
+    console.log("desc : ", desc);
     console.log("content : ", content);
   }
 
   async function onClickPost() {
-    const body = { title, category, content };
-    await Axios.post("/api/post", JSON.stringify(body), {
-      headers: {
-        "Content-Type": `application/json`,
-      },
-    });
-    window.location.reload("/");
+    const body = { title, category, desc, content };
+    try {
+      const res = await Axios.post("/api/post", body, {
+        headers: {
+          "Content-Type": `application/json`,
+        },
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -46,6 +52,12 @@ export default function Write() {
         placeholder="Category"
         defaultValue={category}
         onChange={(e) => setCategory(e.target.value)}
+      />
+      <Input
+        focus
+        placeholder="Desc"
+        defaultValue={desc}
+        onChange={(e) => setDesc(e.target.value)}
       />
       <ReactQuill
         placeholder="Content"

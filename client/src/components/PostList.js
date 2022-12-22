@@ -9,7 +9,7 @@ export default function PostList({ post }) {
           <Item.Content>
             <Item.Header as="a">{m.title}</Item.Header>
             <Item.Meta>
-              <span className="cinema">{m.content.slice(0, 20)} ...</span>
+              <span className="cinema">{m.desc}</span>
             </Item.Meta>
             <Item.Description>{m.createdAt}</Item.Description>
             <Item.Extra>

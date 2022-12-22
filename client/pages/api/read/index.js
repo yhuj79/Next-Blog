@@ -1,4 +1,4 @@
-import prisma from "../../lib/prisma";
+import prisma from "../../../lib/prisma";
 import { getSession } from "next-auth/react";
 
 export default async function ApiRead(req, res) {
