@@ -1,19 +1,18 @@
 import { Image, Header, Icon, Button } from "semantic-ui-react";
+import { useRouter } from "next/router";
 import Gnb from "./Gnb";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Top() {
+  const router = useRouter();
+  const { email } = router.query;
   const { data: session, status } = useSession();
-
-  if (status === "authenticated") {
-    console.log("session : ", JSON.stringify(session, null, 5));
-  }
 
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href="/" style={{ display: "flex", marginTop: 20, width: 210 }}>
+        <Link href={`/${email}`} style={{ display: "flex", marginTop: 20 }}>
           <Icon
             color="black"
             name="blogger"
@@ -21,12 +20,20 @@ export default function Top() {
             style={{ display: "block", width: 70, height: 70 }}
           />
           <Header as="h1" style={{ lineHeight: 0.3 }}>
-            Next-Blog
+            {email}'s Blog
           </Header>
         </Link>
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
           {status === "authenticated" ? (
             <div style={{ display: "flex" }}>
+              {session.user.email == `${email}@gmail.com` ? (
+                <Button animated onClick={() => router.push(`/${email}/write`)}>
+                  <Button.Content visible>Add Post</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="pencil" />
+                  </Button.Content>
+                </Button>
+              ) : null}
               <Button animated="fade" onClick={() => signOut()}>
                 <Button.Content visible>
                   <Image src={session.user.image} avatar />

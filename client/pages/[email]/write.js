@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import Axios from "axios";
+import { useRouter } from "next/router";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { Button, Input, Divider } from "semantic-ui-react";
@@ -9,6 +11,9 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 });
 
 export default function Write() {
+  const router = useRouter();
+  const { email } = router.query;
+
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [desc, setDesc] = useState("");
@@ -29,7 +34,7 @@ export default function Write() {
           "Content-Type": `application/json`,
         },
       });
-      console.log(res);
+      router.push(`/${email}`);
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +42,9 @@ export default function Write() {
 
   return (
     <div>
+      <Head>
+        <title>Post | Next-Blog</title>
+      </Head>
       <Divider />
       <Button onClick={handle}>Value</Button>
       <Button onClick={onClickPost}>Post</Button>
