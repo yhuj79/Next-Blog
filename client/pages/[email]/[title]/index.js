@@ -25,17 +25,7 @@ export default function PostContents() {
       <Head>
         <title>{title} | Next-Blog</title>
       </Head>
-      {post && (
-        <div>
-          {/* <h1>{post.title}</h1>
-          <TextArea
-            defaultValue={JSON.stringify(post, null, 7)}
-            rows={30}
-            cols={90}
-          /> */}
-          <PostGrid post={post} />
-        </div>
-      )}
+      {post && <PostGrid post={post} />}
     </div>
   );
 }

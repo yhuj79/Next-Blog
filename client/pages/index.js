@@ -3,7 +3,7 @@ import Head from "next/head";
 export default function Home() {
 
   return (
-    <div style={{ margin: 30, display: "flex" }}>
+    <div>
       <Head>
         <title>Welcome! | Next-Blog</title>
       </Head>
