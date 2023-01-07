@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { Button, Icon, Image, Item, Label } from "semantic-ui-react";
 
-export default function PostList({ post }) {
+export default function PostList({ postAll, email }) {
   const router = useRouter();
-  const { email } = router.query;
+
   return (
     <Item.Group divided>
-      {post.map((m) => (
+      {postAll.map((m) => (
         <Item key={m.id} onClick={() => router.push(`/${email}/${m.title}`)}>
           <Item.Image src={`/images/${m.id}.png`} />
           <Item.Content>

@@ -1,41 +1,46 @@
-import Axios from "axios";
 import Head from "next/head";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { Button, Divider } from "semantic-ui-react";
 import PostList from "../../src/components/PostList";
+import prisma from "../../lib/prisma";
 
-export default function PostAll() {
+export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  const { email } = router.query;
-  const { data: session, status } = useSession();
 
-  const [post, setPost] = useState([]);
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  } else
+    return (
+      <div>
+        <Head>
+          <title>{email} | Next-Blog</title>
+        </Head>
+        <PostList postAll={postAll} email={email} />
+      </div>
+    );
+}
 
-  useEffect(() => {
-    Axios.get(`/api/check/${email}`).then((res) => {
-      console.log("/api/check/[email]", res.data);
-    });
-  }, [router]);
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { email: "user1" } }, { params: { email: "user2" } }],
+    fallback: true,
+  };
+}
 
-  useEffect(() => {
-    Axios.get(`/api/read/${email}`).then((res) => {
-      setPost(res.data);
-      console.log("/api/read/[email]", res.data);
-    });
-  }, [router]);
+export async function getStaticProps({ params }) {
+  const post = await prisma.post.findMany({
+    where: {
+      author: { email: `${params.email}@gmail.com` },
+    },
+    include: {
+      author: {
+        select: { email: true },
+      },
+    },
+  });
+  const email = params.email;
+  const postAll = JSON.parse(JSON.stringify(post));
 
-  return (
-    <div>
-      <Head>
-        <title>{email} | Next-Blog</title>
-      </Head>
-      {post.length > 0 ? (
-        <PostList post={post} />
-      ) : (
-        <h1>Post가 존재하지 않습니다.</h1>
-      )}
-    </div>
-  );
+  return {
+    props: { postAll, email },
+  };
 }

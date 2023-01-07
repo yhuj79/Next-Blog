@@ -1,31 +1,46 @@
-import Axios from "axios";
 import Head from "next/head";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { TextArea } from "semantic-ui-react";
 import PostGrid from "../../../src/components/PostGrid";
+import prisma from "../../../lib/prisma";
 
-export default function PostContents() {
+export default function PostContents({ postContents, title }) {
   const router = useRouter();
-  const { email, title } = router.query;
 
-  const [post, setPost] = useState([]);
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <div>
+        <Head>
+          <title>{title} | Next-Blog</title>
+        </Head>
+        <PostGrid postContents={postContents} />
+      </div>
+    );
+  }
+}
 
-  useEffect(() => {
-    Axios.get(`/api/read/${email}/${title}`, {
-      params: { email: email, title: title },
-    }).then((res) => {
-      setPost(...res.data);
-      console.log(post);
-    });
-  }, [router]);
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { email: "user1", title: "title1" } },
+      { params: { email: "user2", title: "title2" } },
+    ],
+    fallback: true,
+  };
+}
 
-  return (
-    <div>
-      <Head>
-        <title>{title} | Next-Blog</title>
-      </Head>
-      {post && <PostGrid post={post} />}
-    </div>
-  );
+export async function getStaticProps({ params }) {
+  const post = await prisma.post.findMany({
+    where: {
+      author: { email: `${params.email}@gmail.com` },
+      title: params.title,
+    },
+  });
+  const title = params.title;
+  const postContents = JSON.parse(JSON.stringify(post));
+
+  return {
+    props: { postContents, title },
+  };
 }
