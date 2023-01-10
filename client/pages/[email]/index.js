@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  
+
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -35,7 +35,7 @@ export default function PostAll({ postAll, email }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { email: "user1" } }, { params: { email: "user2" } }],
+    paths: [{ params: { email: "tu7348001" } }],
     fallback: true,
   };
 }

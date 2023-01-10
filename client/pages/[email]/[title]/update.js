@@ -31,10 +31,7 @@ export default function Update({ existingContents }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [
-      { params: { email: "user1", title: "title1" } },
-      { params: { email: "user2", title: "title2" } },
-    ],
+    paths: [{ params: { email: "tu7348001", title: "tu7348001" } }],
     fallback: true,
   };
 }

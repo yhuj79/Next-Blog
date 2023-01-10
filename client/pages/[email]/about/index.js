@@ -36,7 +36,7 @@ export default function About({ user, email }) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { email: "user1" } }, { params: { email: "user2" } }],
+    paths: [{ params: { email: "tu7348001" } }],
     fallback: true,
   };
 }
