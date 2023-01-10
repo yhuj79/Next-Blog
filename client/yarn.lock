@@ -1112,7 +1112,7 @@
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.4.tgz"
   "version" "3.3.4"
 
-"next-auth@^4":
+"next-auth@^4", "next-auth@^4.18.8":
   "integrity" "sha512-USP8ihmvB7iCGtkS0+toe2QPrzdbZfkydQZX56JOI9Ft5n/BardOXh3D4wQ2An+vpq/jDKojGlgfv21wVElW7A=="
   "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.18.8.tgz"
   "version" "4.18.8"
