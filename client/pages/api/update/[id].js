@@ -1,19 +1,22 @@
-import prisma from "../../hooks/prisma";
+import prisma from "../../../hooks/prisma";
 import { getSession } from "next-auth/react";
 
-export default async function ApiPost(req, res) {
+export default async function ApiUpdate(req, res) {
   const session = await getSession({ req });
 
   if (session && req.method === "POST") {
+    const id = req.query.id;
     const { title, category, desc, content } = req.body;
 
-    const post = await prisma.post.create({
+    const updatePost = await prisma.post.update({
+      where: {
+        id: Number(id),
+      },
       data: {
         title: title,
         category: category,
         desc: desc,
         content: content,
-        author: { connect: { email: session?.user?.email } },
       },
     });
     res.json({ ok: true });

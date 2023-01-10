@@ -12,17 +12,31 @@ export default function Top() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href={`/${email}`} style={{ display: "flex", marginTop: 20 }}>
-          <Icon
-            color="black"
-            name="blogger"
-            size="huge"
-            style={{ display: "block", width: 70, height: 70 }}
-          />
-          <Header as="h1" style={{ lineHeight: 0.3 }}>
-            {email}'s Blog
-          </Header>
-        </Link>
+        {email ? (
+          <Link href={`/${email}`} style={{ display: "flex", marginTop: 20 }}>
+            <Icon
+              color="black"
+              name="blogger"
+              size="huge"
+              style={{ display: "block", width: 70, height: 70 }}
+            />
+            <Header as="h1" style={{ lineHeight: 0.3 }}>
+              {email} Next Blog
+            </Header>
+          </Link>
+        ) : (
+          <Link href={`/`} style={{ display: "flex", marginTop: 20 }}>
+            <Icon
+              color="black"
+              name="blogger"
+              size="huge"
+              style={{ display: "block", width: 70, height: 70 }}
+            />
+            <Header as="h1" style={{ lineHeight: 0.3 }}>
+              Next Blog
+            </Header>
+          </Link>
+        )}
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
           {status === "authenticated" ? (
             <div style={{ display: "flex" }}>

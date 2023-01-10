@@ -44,6 +44,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  about         String? @db.Text
   accounts      Account[]
   sessions      Session[]
   post       Post[]
@@ -59,13 +60,12 @@ model VerificationToken {
 
 model Post{
   id Int @id @default(autoincrement())
-  title String
+  title String? @db.Text
   category String
   desc String
   content String @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  published Boolean @default(false)
   author    User   @relation(fields: [userId], references: [id])
   userId  String
 

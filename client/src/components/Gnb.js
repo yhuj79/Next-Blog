@@ -1,24 +1,23 @@
+import { useRouter } from "next/router";
 import { Menu } from "semantic-ui-react";
 
 export default function Gnb() {
-  const activeItem = "home";
+  const router = useRouter();
+  const { email } = router.query;
 
   return (
     <Menu inverted style={{ marginTop: 0 }}>
       <Menu.Item
         name="home"
-        active={activeItem === "home"}
-        //   onClick={this.handleItemClick}
+        onClick={() => router.push(`/${email}`)}
       />
       <Menu.Item
         name="about"
-        active={activeItem === "about"}
-        //   onClick={this.handleItemClick}
+        onClick={() => router.push(`/${email}/about`)}
       />
       <Menu.Item
         name="category"
-        active={activeItem === "category"}
-        //   onClick={this.handleItemClick}
+        onClick={() => router.push(`/${email}/category`)}
       />
     </Menu>
   );

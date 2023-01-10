@@ -1,18 +1,19 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Spinner from "../../../src/components/Spinner";
 import PostGrid from "../../../src/components/PostGrid";
-import prisma from "../../../lib/prisma";
+import prisma from "../../../hooks/prisma";
 
-export default function PostContents({ postContents, title }) {
+export default function PostContents({ postContents, title, email }) {
   const router = useRouter();
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   } else {
     return (
       <div>
         <Head>
-          <title>{title} | Next-Blog</title>
+          <title>{`${title} | ${email}`}</title>
         </Head>
         <PostGrid postContents={postContents} />
       </div>
@@ -38,9 +39,10 @@ export async function getStaticProps({ params }) {
     },
   });
   const title = params.title;
+  const email = params.email;
   const postContents = JSON.parse(JSON.stringify(post));
 
   return {
-    props: { postContents, title },
+    props: { postContents, title, email },
   };
 }
