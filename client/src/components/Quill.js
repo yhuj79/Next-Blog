@@ -29,11 +29,8 @@ export default function Quill({ handler, existingContents }) {
   }
 
   function handle() {
-    console.log("email : ", email);
-    console.log("title : ", title);
-    console.log("category : ", category);
-    console.log("desc : ", desc);
-    console.log("content : ", content);
+    const body = { email, title, category, desc, content };
+    console.log(JSON.stringify(body, null, 5));
   }
 
   function onClick() {

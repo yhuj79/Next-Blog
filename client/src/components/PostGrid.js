@@ -1,7 +1,7 @@
 import { Segment, Divider, Header, Image, Label } from "semantic-ui-react";
 import DOMPurify from "isomorphic-dompurify";
 
-export default function PostContentsGrid({ postContents }) {
+export default function PostGrid({ postContents }) {
   return (
     <div>
       {postContents.map((m) => (

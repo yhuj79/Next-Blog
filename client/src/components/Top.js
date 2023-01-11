@@ -27,7 +27,7 @@ export default function Top() {
             </Header>
           </Link>
         ) : (
-          <Link href={`/`} style={{ display: "flex", marginTop: 20 }}>
+          <Link href={"/"} style={{ display: "flex", marginTop: 20 }}>
             <Icon
               color="black"
               name="blogger"

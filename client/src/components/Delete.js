@@ -6,7 +6,7 @@ export default function Delete({ id }) {
 
   async function onClickDelete() {
     try {
-      await fetch(`api/delete/${id}`, {
+      await fetch(`api/post/delete/${id}`, {
         method: "DELETE",
       });
       await router.reload();

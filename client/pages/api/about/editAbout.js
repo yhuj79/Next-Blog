@@ -1,15 +1,12 @@
 import prisma from "../../../hooks/prisma";
-import { getSession } from "next-auth/react";
 
-export default async function ApiUser(req, res) {
-  const session = await getSession({ req });
-
-  if (session && req.method === "POST") {
-    const { about } = req.body;
+export default async function ApiAboutEdit(req, res) {
+  if (req.method === "POST") {
+    const { email, about } = req.body;
 
     const aboutUpdate = await prisma.user.update({
       where: {
-        email: session?.user?.email,
+        email: email,
       },
       data: {
         about: about,

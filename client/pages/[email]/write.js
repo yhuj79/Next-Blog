@@ -8,12 +8,12 @@ export default function Write() {
 
   async function handler(body) {
     try {
-      await fetch("/api/post", {
+      await fetch("/api/post/write", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await router.push(`/${email}`);
+      await router.push(`/${email}/${encodeURI(body.title)}`);
     } catch (error) {
       console.log(error);
     }

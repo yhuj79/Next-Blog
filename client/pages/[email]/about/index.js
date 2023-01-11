@@ -20,7 +20,7 @@ export default function About({ user, email }) {
         </Head>
         {status === "authenticated" &&
         session.user.email == `${email}@gmail.com` ? (
-          <Button onClick={() => router.push(`/${email}/about/update`)}>
+          <Button onClick={() => router.push(`/${email}/about/edit`)}>
             수정
           </Button>
         ) : null}
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
         email: m.email,
       },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -64,5 +64,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { user, email },
+    revalidate: 10,
   };
 }

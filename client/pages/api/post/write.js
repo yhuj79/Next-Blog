@@ -1,6 +1,6 @@
-import prisma from "../../hooks/prisma";
+import prisma from "../../../hooks/prisma";
 
-export default async function ApiPost(req, res) {
+export default async function ApiPostWrite(req, res) {
   if (req.method === "POST") {
     const { email, title, category, desc, content } = req.body;
 

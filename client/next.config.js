@@ -9,7 +9,7 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: "/:email*/about/update",
+        source: "/:email*/about/edit",
         destination: "/:email*/about",
         permanent: false,
       },

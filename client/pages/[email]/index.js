@@ -41,7 +41,7 @@ export async function getStaticPaths() {
         email: m.email,
       },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -57,11 +57,13 @@ export async function getStaticProps({ params }) {
     const postAll = JSON.parse(JSON.stringify(post));
     return {
       props: { postAll, email },
+      revalidate: 10,
     };
   } else {
     const postAll = false;
     return {
       props: { postAll, email },
+      revalidate: 10,
     };
   }
 }

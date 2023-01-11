@@ -30,7 +30,7 @@ export default function PostList({ postAll, email }) {
                 <Button
                   onClick={() =>
                     router.push({
-                      pathname: `/${email}/${m.title}/update`,
+                      pathname: `/${email}/${m.title}/edit`,
                       query: { id: m.id },
                     })
                   }

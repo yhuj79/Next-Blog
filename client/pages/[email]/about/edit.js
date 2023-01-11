@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import prisma from "../../../hooks/prisma";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
@@ -10,25 +11,27 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function AboutUpdate({ user }) {
+export default function AboutEdit({ user }) {
   const router = useRouter();
-  const { email } = router.query;
+  const { data: session, status } = useSession();
+  const email = session?.user?.email;
 
   const [about, setAbout] = useState(`${user.map((m) => m.about)}`);
 
   function handle() {
+    console.log("email : ", email.slice(0, 9));
     console.log("about : ", about);
   }
 
   async function onClickAbout() {
     try {
-      const body = { about };
-      await fetch("/api/about/update", {
+      const body = { email, about };
+      await fetch("/api/about/editAbout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await router.push(`/${email}/about`);
+      await router.push(`/${email.slice(0, 9)}/about`);
     } catch (error) {
       console.log(error);
     }

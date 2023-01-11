@@ -3,18 +3,18 @@ import { useRouter } from "next/router";
 import Quill from "../../../src/components/Quill";
 import prisma from "../../../hooks/prisma";
 
-export default function Update({ existingContents }) {
+export default function Edit({ existingContents }) {
   const router = useRouter();
   const { id, email, title } = router.query;
 
   async function handler(body) {
     try {
-      await fetch(`/api/update/${id}`, {
+      await fetch(`/api/post/edit/${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await router.push(`/${email}`);
+      await router.push(`/${email}/${encodeURI(body.title)}`);
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
         title: m.email,
       },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -54,5 +54,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { existingContents },
+    revalidate: 10,
   };
 }

@@ -1,12 +1,9 @@
-import prisma from "../../../hooks/prisma";
-import { getSession } from "next-auth/react";
+import prisma from "../../../../hooks/prisma";
 
-export default async function ApiUpdate(req, res) {
-  const session = await getSession({ req });
-
-  if (session && req.method === "POST") {
+export default async function ApiPostEdit(req, res) {
+  if (req.method === "POST") {
     const id = req.query.id;
-    const { title, category, desc, content } = req.body;
+    const { email, title, category, desc, content } = req.body;
 
     const updatePost = await prisma.post.update({
       where: {
@@ -17,6 +14,7 @@ export default async function ApiUpdate(req, res) {
         category: category,
         desc: desc,
         content: content,
+        email: email,
       },
     });
     res.json({ ok: true });

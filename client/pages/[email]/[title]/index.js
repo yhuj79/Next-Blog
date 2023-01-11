@@ -30,7 +30,7 @@ export async function getStaticPaths() {
         title: m.name,
       },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -47,5 +47,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { postContents, title, email },
+    revalidate: 10,
   };
 }
