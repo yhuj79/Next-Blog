@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Quill from "../../../src/components/Quill";
+import prisma from "../../../hooks/prisma";
 
 export default function Update({ existingContents }) {
   const router = useRouter();
@@ -30,8 +31,14 @@ export default function Update({ existingContents }) {
 }
 
 export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
   return {
-    paths: [{ params: { email: "tu7348001", title: "tu7348001" } }],
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+        title: m.email,
+      },
+    })),
     fallback: true,
   };
 }

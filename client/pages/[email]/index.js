@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-
+  
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -34,8 +34,13 @@ export default function PostAll({ postAll, email }) {
 }
 
 export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
   return {
-    paths: [{ params: { email: "tu7348001" } }],
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+      },
+    })),
     fallback: true,
   };
 }

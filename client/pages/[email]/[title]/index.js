@@ -22,8 +22,14 @@ export default function PostContents({ postContents, title, email }) {
 }
 
 export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
   return {
-    paths: [{ params: { email: "tu7348001", title: "tu7348001" } }],
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+        title: m.name,
+      },
+    })),
     fallback: true,
   };
 }

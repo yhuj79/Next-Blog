@@ -1,14 +1,15 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Spinner from "../../../src/components/Spinner";
-import { Segment, Divider, Button } from "semantic-ui-react";
+import { Segment, Divider, Button, Header } from "semantic-ui-react";
 import DOMPurify from "isomorphic-dompurify";
 import { useSession } from "next-auth/react";
+import prisma from "../../../hooks/prisma";
 
 export default function About({ user, email }) {
   const router = useRouter();
   const { data: session, status } = useSession();
-
+  
   if (!user) {
     return <Spinner />;
   } else {
@@ -24,19 +25,31 @@ export default function About({ user, email }) {
           </Button>
         ) : null}
         <Divider />
-        <div
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(user[0].about),
-          }}
-        />
+        {user.map((m) =>
+          m.about ? (
+            <div
+              key={m.id}
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(m.about),
+              }}
+            />
+          ) : (
+            <Header key={m.id}>등록된 자기소개가 없습니다!</Header>
+          )
+        )}
       </Segment>
     );
   }
 }
 
 export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
   return {
-    paths: [{ params: { email: "tu7348001" } }],
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+      },
+    })),
     fallback: true,
   };
 }

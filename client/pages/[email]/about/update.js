@@ -13,7 +13,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 export default function AboutUpdate({ user }) {
   const router = useRouter();
   const { email } = router.query;
-  const [about, setAbout] = useState(user[0].about);
+
+  const [about, setAbout] = useState(`${user.map((m) => m.about)}`);
 
   function handle() {
     console.log("about : ", about);
