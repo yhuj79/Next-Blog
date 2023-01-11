@@ -64,6 +64,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { user, email },
-    revalidate: 10,
+    revalidate: 1,
   };
 }

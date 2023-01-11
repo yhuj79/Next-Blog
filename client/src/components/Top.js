@@ -8,9 +8,7 @@ export default function Top() {
   const router = useRouter();
   const { email } = router.query;
   const { data: session, status } = useSession();
-
-  console.log(session);
-
+  
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

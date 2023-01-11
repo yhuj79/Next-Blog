@@ -26,7 +26,7 @@ export default function AboutEdit({ user }) {
   async function onClickAbout() {
     try {
       const body = { email, about };
-      await fetch("/api/about/editAbout", {
+      await fetch("/api/about/aboutEdit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

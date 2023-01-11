@@ -8,7 +8,7 @@ export default function Write() {
 
   async function handler(body) {
     try {
-      await fetch("/api/post/write", {
+      await fetch("/api/post/postWrite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),

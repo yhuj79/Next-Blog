@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  console.log(postAll);
+  
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -57,13 +57,13 @@ export async function getStaticProps({ params }) {
     const postAll = JSON.parse(JSON.stringify(post));
     return {
       props: { postAll, email },
-      revalidate: 10,
+      revalidate: 1,
     };
   } else {
     const postAll = false;
     return {
       props: { postAll, email },
-      revalidate: 10,
+      revalidate: 1,
     };
   }
 }
