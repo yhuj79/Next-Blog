@@ -46,7 +46,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const post = await prisma.post.findMany({
     where: {
-      author: { email: `${params.email}@gmail.com` },
+      email: `${params.email}@gmail.com`,
       title: params.title,
     },
   });

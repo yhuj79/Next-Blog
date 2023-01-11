@@ -47,7 +47,6 @@ model User {
   about         String? @db.Text
   accounts      Account[]
   sessions      Session[]
-  post       Post[]
 }
 
 model VerificationToken {
@@ -66,8 +65,5 @@ model Post{
   content String @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  author    User   @relation(fields: [userId], references: [id])
-  userId  String
-
-  @@index([userId])
+  email    String @db.Text
 }

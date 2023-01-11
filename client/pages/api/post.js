@@ -1,11 +1,8 @@
 import prisma from "../../hooks/prisma";
-import { getSession } from "next-auth/react";
 
 export default async function ApiPost(req, res) {
-  const session = await getSession({ req });
-
-  if (session && req.method === "POST") {
-    const { title, category, desc, content } = req.body;
+  if (req.method === "POST") {
+    const { email, title, category, desc, content } = req.body;
 
     const post = await prisma.post.create({
       data: {
@@ -13,7 +10,7 @@ export default async function ApiPost(req, res) {
         category: category,
         desc: desc,
         content: content,
-        author: { connect: { email: session?.user?.email } },
+        email: email,
       },
     });
     res.json({ ok: true });

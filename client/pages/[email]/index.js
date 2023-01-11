@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  
+  console.log(postAll);
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -48,12 +48,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const post = await prisma.post.findMany({
     where: {
-      author: { email: `${params.email}@gmail.com` },
-    },
-    include: {
-      author: {
-        select: { email: true },
-      },
+      email: `${params.email}@gmail.com`,
     },
   });
   const email = params.email;

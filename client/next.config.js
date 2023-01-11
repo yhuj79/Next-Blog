@@ -8,6 +8,11 @@ const nextConfig = {
         destination: "/:email*",
         permanent: false,
       },
+      {
+        source: "/:email*/about/update",
+        destination: "/:email*/about",
+        permanent: false,
+      },
     ];
   },
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import { Button, Input, Divider } from "semantic-ui-react";
@@ -10,7 +11,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 
 export default function Quill({ handler, existingContents }) {
   const router = useRouter();
-  const { email } = router.query;
+  const { data: session, status } = useSession();
+  const email = session?.user?.email;
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -27,6 +29,7 @@ export default function Quill({ handler, existingContents }) {
   }
 
   function handle() {
+    console.log("email : ", email);
     console.log("title : ", title);
     console.log("category : ", category);
     console.log("desc : ", desc);
@@ -34,7 +37,7 @@ export default function Quill({ handler, existingContents }) {
   }
 
   function onClick() {
-    const body = { title, category, desc, content };
+    const body = { email, title, category, desc, content };
     handler(body);
   }
 
