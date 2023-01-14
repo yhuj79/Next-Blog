@@ -8,7 +8,7 @@ export default function Top() {
   const router = useRouter();
   const { email } = router.query;
   const { data: session, status } = useSession();
-  
+
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -21,7 +21,7 @@ export default function Top() {
               style={{ display: "block", width: 70, height: 70 }}
             />
             <Header as="h1" style={{ lineHeight: 0.3 }}>
-              {email} Next Blog
+              {email} Blog
             </Header>
           </Link>
         ) : (
@@ -38,31 +38,21 @@ export default function Top() {
           </Link>
         )}
         <div style={{ display: "flex", alignItems: "center", marginTop: 15 }}>
-          {status === "authenticated" ? (
+          {status === "authenticated" &&
+          session.user.email == `${email}@gmail.com` ? (
             <div style={{ display: "flex" }}>
-              {session.user.email == `${email}@gmail.com` ? (
-                <Button animated onClick={() => router.push(`/${email}/write`)}>
-                  <Button.Content visible>Add Post</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="pencil" />
-                  </Button.Content>
-                </Button>
-              ) : null}
+              <Button animated onClick={() => router.push(`/${email}/write`)}>
+                <Button.Content visible>새 글 작성</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="pencil" />
+                </Button.Content>
+              </Button>
               <Button animated="fade" onClick={() => signOut()}>
                 <Button.Content visible>
                   <Image src={session.user.image} avatar />
                   <span>&nbsp;{session.user.name}</span>
                 </Button.Content>
                 <Button.Content hidden>Logout</Button.Content>
-              </Button>
-              <Button animated>
-                <Button.Content visible>
-                  <Icon name="info circle" />
-                  Info
-                </Button.Content>
-                <Button.Content hidden>
-                  <Icon name="arrow right" />
-                </Button.Content>
               </Button>
             </div>
           ) : (

@@ -15,15 +15,18 @@ export default function AboutEdit({ user }) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const email = session?.user?.email;
+  const sliceEmail = email?.slice(0, 9);
 
+  const [loading, setLoading] = useState(false);
   const [about, setAbout] = useState(`${user.map((m) => m.about)}`);
 
   function handle() {
-    console.log("email : ", email.slice(0, 9));
+    console.log("email : ", sliceEmail);
     console.log("about : ", about);
   }
 
   async function onClickAbout() {
+    setLoading(true);
     try {
       const body = { email, about };
       await fetch("/api/about/aboutEdit", {
@@ -31,8 +34,9 @@ export default function AboutEdit({ user }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      await router.push(`/${email.slice(0, 9)}/about`);
+      router.push(`/${sliceEmail}/about`);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -40,11 +44,15 @@ export default function AboutEdit({ user }) {
   return (
     <div>
       <Head>
-        <title>{`About Update | ${email}`}</title>
+        <title>{`소개 | ${sliceEmail}`}</title>
       </Head>
       <Divider />
       <Button onClick={handle}>Value</Button>
-      <Button onClick={onClickAbout}>수정</Button>
+      {!loading ? (
+        <Button onClick={onClickAbout}>저장하기</Button>
+      ) : (
+        <Button loading>저장하기</Button>
+      )}
       <Divider />
       <ReactQuill
         placeholder="About"

@@ -22,7 +22,7 @@ export default function Write() {
   return (
     <div>
       <Head>
-        <title>{`Post | ${email}`}</title>
+        <title>{`새 글 작성 | ${email}`}</title>
       </Head>
       <Quill handler={handler} />
     </div>

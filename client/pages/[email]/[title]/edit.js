@@ -23,37 +23,23 @@ export default function Edit({ existingContents }) {
   return (
     <div>
       <Head>
-        <title>{`Post Update | ${email}`}</title>
+        <title>{`글 수정 | ${email}`}</title>
       </Head>
       <Quill handler={handler} existingContents={existingContents} />
     </div>
   );
 }
 
-export async function getStaticPaths() {
-  const user = await prisma.user.findMany();
-  return {
-    paths: user.map((m) => ({
-      params: {
-        email: m.email,
-        title: m.email,
-      },
-    })),
-    fallback: "blocking",
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps(context) {
   const post = await prisma.post.findMany({
     where: {
-      email: `${params.email}@gmail.com`,
-      title: params.title,
+      email: `${context.params.email}@gmail.com`,
+      title: context.params.title,
     },
   });
   const existingContents = JSON.parse(JSON.stringify(post));
 
   return {
     props: { existingContents },
-    revalidate: 1,
   };
 }

@@ -4,7 +4,7 @@ import Spinner from "../../../src/components/Spinner";
 import PostGrid from "../../../src/components/PostGrid";
 import prisma from "../../../hooks/prisma";
 
-export default function PostContents({ postContents, title, email }) {
+export default function PostContents({ postContents, title }) {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -13,7 +13,7 @@ export default function PostContents({ postContents, title, email }) {
     return (
       <div>
         <Head>
-          <title>{`${title} | ${email}`}</title>
+          <title>{`${title}`}</title>
         </Head>
         <PostGrid postContents={postContents} />
       </div>
@@ -41,12 +41,17 @@ export async function getStaticProps({ params }) {
       title: params.title,
     },
   });
-  const title = params.title;
-  const email = params.email;
-  const postContents = JSON.parse(JSON.stringify(post));
 
-  return {
-    props: { postContents, title, email },
-    revalidate: 1,
-  };
+  if (post.length > 0) {
+    const title = params.title;
+    const postContents = JSON.parse(JSON.stringify(post));
+    return {
+      props: { postContents, title },
+      revalidate: 1,
+    };
+  } else {
+    return {
+      notFound: true,
+    };
+  }
 }
