@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Quill from "../../../src/components/Quill";
@@ -7,7 +8,10 @@ export default function Edit({ existingContents }) {
   const router = useRouter();
   const { id, email, title } = router.query;
 
+  const [loading, setLoading] = useState(false);
+
   async function handler(body) {
+    setLoading(true);
     try {
       await fetch(`/api/post/edit/${id}`, {
         method: "POST",
@@ -16,6 +20,7 @@ export default function Edit({ existingContents }) {
       });
       await router.push(`/${email}/${encodeURI(body.title)}`);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -25,7 +30,7 @@ export default function Edit({ existingContents }) {
       <Head>
         <title>{`글 수정 | ${email}`}</title>
       </Head>
-      <Quill handler={handler} existingContents={existingContents} />
+      <Quill handler={handler} loading={loading} existingContents={existingContents} />
     </div>
   );
 }

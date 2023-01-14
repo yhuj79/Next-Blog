@@ -6,7 +6,7 @@ import prisma from "../../hooks/prisma";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-
+  console.log(postAll);
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -15,20 +15,32 @@ export default function PostAll({ postAll, email }) {
         <Head>
           <title>{`${email} | Next-Blog`}</title>
         </Head>
-        <PostList postAll={postAll} email={email} />
+        {postAll.length > 0 ? (
+          <PostList postAll={postAll} email={email} />
+        ) : (
+          <div>
+            <h1>아직 등록된 글이 없습니다.</h1>
+          </div>
+        )}
       </div>
     );
   }
 }
 
 export async function getServerSideProps(context) {
+  const user = await prisma.user.findMany({
+    where: {
+      email: `${context.params.email}@gmail.com`,
+    },
+  });
+
   const post = await prisma.post.findMany({
     where: {
       email: `${context.params.email}@gmail.com`,
     },
   });
 
-  if (post.length > 0) {
+  if (user.length > 0) {
     const email = context.params.email;
     const postAll = JSON.parse(JSON.stringify(post));
     return {

@@ -9,37 +9,38 @@ export default function PostList({ postAll, email }) {
   return (
     <div>
       {postAll.map((m) => (
-        <Segment key={m.id}>
+        <Segment key={m.id} raised>
           <Item.Group divided style={{ display: "flex" }}>
             <Item onClick={() => router.push(`/${email}/${m.title}`)}>
-              <Item.Image src={`/images/${m.id}.png`} />
+              <Item.Image src={`/images/${m.id}.png`} size="small" />
               <Item.Content>
-                <Item.Header as="a">{m.title}</Item.Header>
+                <Item.Header as="h1">{m.title}</Item.Header>
                 <Item.Meta>
                   <span className="cinema">{m.desc}</span>
                 </Item.Meta>
-                <Item.Description>{m.createdAt}</Item.Description>
+                <Item.Description>{m.createdAt.slice(0, 10)}</Item.Description>
                 <Item.Extra>
                   <Label>{m.category}</Label>
                 </Item.Extra>
               </Item.Content>
+              {status === "authenticated" &&
+              session.user.email == `${email}@gmail.com` ? (
+                <Item.Content>
+                  <Delete id={m.id} />
+                  <Button
+                    floated="right"
+                    onClick={() =>
+                      router.push({
+                        pathname: `/${email}/${m.title}/edit`,
+                        query: { id: m.id },
+                      })
+                    }
+                  >
+                    수정
+                  </Button>
+                </Item.Content>
+              ) : null}
             </Item>
-            {status === "authenticated" &&
-            session.user.email == `${email}@gmail.com` ? (
-              <div style={{ display: "flex" }}>
-                <Button
-                  onClick={() =>
-                    router.push({
-                      pathname: `/${email}/${m.title}/edit`,
-                      query: { id: m.id },
-                    })
-                  }
-                >
-                  수정
-                </Button>
-                <Delete id={m.id} />
-              </div>
-            ) : null}
           </Item.Group>
         </Segment>
       ))}

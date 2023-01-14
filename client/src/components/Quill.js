@@ -9,7 +9,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function Quill({ handler, existingContents }) {
+export default function Quill({ handler, loading, existingContents }) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const email = session?.user?.email;
@@ -28,11 +28,6 @@ export default function Quill({ handler, existingContents }) {
     }, [existingContents]);
   }
 
-  function handle() {
-    const body = { email, title, category, desc, content };
-    console.log(JSON.stringify(body, null, 5));
-  }
-
   function onClick() {
     const body = { email, title, category, desc, content };
     handler(body);
@@ -41,8 +36,11 @@ export default function Quill({ handler, existingContents }) {
   return (
     <div>
       <Divider />
-      <Button onClick={handle}>Value</Button>
-      <Button onClick={() => onClick()}>Post</Button>
+      {!loading ? (
+        <Button onClick={onClick}>저장하기</Button>
+      ) : (
+        <Button loading>저장하기</Button>
+      )}
       <Divider />
       <Input
         focus

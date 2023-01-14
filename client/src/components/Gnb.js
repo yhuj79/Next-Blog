@@ -7,7 +7,7 @@ export default function Gnb() {
   const { email } = router.query;
 
   return (
-    <Menu inverted style={{ marginTop: 0 }}>
+    <Menu inverted style={{ margin: "0 0 15px" }}>
       <Link href={`/${email}`}>
         <Menu.Item name="글" />
       </Link>

@@ -20,11 +20,6 @@ export default function AboutEdit({ user }) {
   const [loading, setLoading] = useState(false);
   const [about, setAbout] = useState(`${user.map((m) => m.about)}`);
 
-  function handle() {
-    console.log("email : ", sliceEmail);
-    console.log("about : ", about);
-  }
-
   async function onClickAbout() {
     setLoading(true);
     try {
@@ -34,7 +29,7 @@ export default function AboutEdit({ user }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      router.push(`/${sliceEmail}/about`);
+      await router.push(`/${sliceEmail}/about`);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -47,7 +42,6 @@ export default function AboutEdit({ user }) {
         <title>{`소개 | ${sliceEmail}`}</title>
       </Head>
       <Divider />
-      <Button onClick={handle}>Value</Button>
       {!loading ? (
         <Button onClick={onClickAbout}>저장하기</Button>
       ) : (

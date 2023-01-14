@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Quill from "../../src/components/Quill";
@@ -6,8 +7,11 @@ export default function Write() {
   const router = useRouter();
   const { email } = router.query;
 
+  const [loading, setLoading] = useState(false);
+
   async function handler(body) {
     try {
+      setLoading(true);
       await fetch("/api/post/postWrite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -15,6 +19,7 @@ export default function Write() {
       });
       await router.push(`/${email}/${encodeURI(body.title)}`);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   }
@@ -24,7 +29,7 @@ export default function Write() {
       <Head>
         <title>{`새 글 작성 | ${email}`}</title>
       </Head>
-      <Quill handler={handler} />
+      <Quill handler={handler} loading={loading} />
     </div>
   );
 }
