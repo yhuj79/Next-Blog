@@ -6,7 +6,7 @@ import prisma from "../../hooks/prisma";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  console.log(postAll);
+  
   if (router.isFallback) {
     return <Spinner />;
   } else {

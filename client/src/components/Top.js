@@ -8,6 +8,7 @@ export default function Top() {
   const router = useRouter();
   const { email } = router.query;
   const { data: session, status } = useSession();
+  const sliceEmail = session?.user.email.slice(0, 9);
 
   return (
     <div className={styles.wrap}>
@@ -37,15 +38,23 @@ export default function Top() {
         </Link>
       )}
       <div style={{ display: "flex" }}>
-        {status === "authenticated" &&
-        session.user.email == `${email}@gmail.com` ? (
-          <div style={{ display: "flex" }}>
-            <Button animated onClick={() => router.push(`/${email}/write`)}>
-              <Button.Content visible>새 글 작성</Button.Content>
-              <Button.Content hidden>
-                <Icon name="pencil" />
-              </Button.Content>
-            </Button>
+        {status === "authenticated" ? (
+          <div style={{display: "flex" }}>
+            {session.user.email == `${email}@gmail.com` ? (
+              <Button animated onClick={() => router.push(`/${email}/write`)}>
+                <Button.Content visible>새 글 작성</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="pencil" />
+                </Button.Content>
+              </Button>
+            ) : (
+              <Button animated onClick={() => router.push(`/${sliceEmail}`)}>
+                <Button.Content visible>내 블로그</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="arrow right" />
+                </Button.Content>
+              </Button>
+            )}
             <Button animated="fade" onClick={() => signOut()}>
               <Button.Content visible>
                 <Image src={session.user.image} avatar />

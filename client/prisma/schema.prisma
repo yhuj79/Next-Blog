@@ -62,7 +62,7 @@ model Post{
   title String? @db.Text
   category String
   desc String
-  content String @db.Text
+  content String @db.LongText
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email    String @db.Text
