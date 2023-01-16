@@ -1,5 +1,6 @@
 import { Segment, Divider, Header, Image, Label } from "semantic-ui-react";
 import DOMPurify from "isomorphic-dompurify";
+import styles from "./PostGrid.module.css";
 
 export default function PostGrid({ postContents }) {
   return (
@@ -15,7 +16,7 @@ export default function PostGrid({ postContents }) {
           <Header as="h3">{m.createdAt}</Header>
           <Header as="h3">{m.desc}</Header>
           <Divider />
-          <div
+          <div className={styles.article}
             dangerouslySetInnerHTML={{
               __html: DOMPurify.sanitize(m.content),
             }}

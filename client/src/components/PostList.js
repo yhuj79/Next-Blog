@@ -23,7 +23,8 @@ export default function PostList({ postAll, email }) {
                   <Label>{m.category}</Label>
                 </Item.Extra>
               </Item.Content>
-              {status === "authenticated" &&
+            </Item>
+            {status === "authenticated" &&
               session.user.email == `${email}@gmail.com` ? (
                 <Item.Content>
                   <Delete id={m.id} />
@@ -40,7 +41,6 @@ export default function PostList({ postAll, email }) {
                   </Button>
                 </Item.Content>
               ) : null}
-            </Item>
           </Item.Group>
         </Segment>
       ))}
