@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
 import { Icon } from "semantic-ui-react";
-import styles from "../styles/Error.module.css";
+import styles from "../styles/error.module.css";
 
 function Error({ statusCode }) {
   return (
