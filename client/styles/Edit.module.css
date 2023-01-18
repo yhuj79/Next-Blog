@@ -1,0 +1,12 @@
+.wrap {
+    display: flex;
+    margin-top: 10px;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.icon:hover {
+    opacity: 0.6;
+}

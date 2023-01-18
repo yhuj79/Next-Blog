@@ -1,7 +1,7 @@
 import { Segment, Divider, Header, Image, Label } from "semantic-ui-react";
 import DOMPurify from "isomorphic-dompurify";
 import "react-quill/dist/quill.core.css";
-import styles from "./PostGrid.module.css";
+import styles from "../../styles/PostGrid.module.css";
 
 export default function PostGrid({ postContents }) {
   return (

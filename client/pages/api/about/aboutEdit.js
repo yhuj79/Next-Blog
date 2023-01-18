@@ -12,10 +12,8 @@ export default async function ApiAboutEdit(req, res) {
         about: about,
       },
     });
-    res.json({ ok: true });
+    res.status(200).json({ ok: true });
   } else {
-    throw new Error(
-      `The HTTP ${req.method} method is not supported at this route.`
-    );
+    res.status(405).send();
   }
 }

@@ -12,17 +12,17 @@ export default function Edit({ existingContents }) {
 
   async function handler(body) {
     setLoading(true);
-    try {
-      await fetch(`/api/post/edit/${id}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      await router.push(`/${email}/${encodeURI(body.title)}`);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    await fetch(`/api/post/edit/${id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then((res) => {
+      if (res.status === 200) {
+        router.push(`/${email}/${encodeURI(body.title)}`);
+      } else {
+        setLoading(false);
+      }
+    });
   }
 
   return (

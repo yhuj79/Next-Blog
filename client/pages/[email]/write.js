@@ -10,18 +10,18 @@ export default function Write() {
   const [loading, setLoading] = useState(false);
 
   async function handler(body) {
-    try {
-      setLoading(true);
-      await fetch("/api/post/postWrite", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      await router.push(`/${email}/${encodeURI(body.title)}`);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    setLoading(true);
+    await fetch("/api/post/postWrite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then((res) => {
+      if (res.status === 200) {
+        router.push(`/${email}/${encodeURI(body.title)}`);
+      } else {
+        setLoading(false);
+      }
+    });
   }
 
   return (

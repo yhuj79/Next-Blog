@@ -1,0 +1,24 @@
+.wrap {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.wrap:hover {
+    background-color: #EDEDED;
+    transition: all 0.3s;
+}
+
+.thumbnail {
+    width: 260px;
+    height: 130px;
+    object-fit: cover;
+    border: 1px solid #DBDBDB;
+    border-radius: 7px;
+    margin-right: 15px;
+}
+
+.content_first {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}

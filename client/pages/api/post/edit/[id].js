@@ -5,23 +5,25 @@ export default async function ApiPostEdit(req, res) {
     const id = req.query.id;
     const { email, title, thumbnail, category, desc, content } = req.body;
 
-    const updatePost = await prisma.post.update({
-      where: {
-        id: Number(id),
-      },
-      data: {
-        title: title,
-        thumbnail: thumbnail,
-        category: category,
-        desc: desc,
-        content: content,
-        email: email,
-      },
-    });
-    res.json({ ok: true });
+    if (title == "" || desc == "" || category == "" || content == "") {
+      res.status(422).send();
+    } else {
+      const updatePost = await prisma.post.update({
+        where: {
+          id: Number(id),
+        },
+        data: {
+          title: title,
+          thumbnail: thumbnail,
+          category: category,
+          desc: desc,
+          content: content,
+          email: email,
+        },
+      });
+      res.status(200).json({ ok: true });
+    }
   } else {
-    throw new Error(
-      `The HTTP ${req.method} method is not supported at this route.`
-    );
+    res.status(405).send();
   }
 }

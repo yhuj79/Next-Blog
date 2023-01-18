@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import { Segment, Image, Item, Label, Button } from "semantic-ui-react";
+import { Segment, Image, Item, Label, Button, Icon } from "semantic-ui-react";
 import { useSession } from "next-auth/react";
-import Delete from "./Delete";
+import styles from "../../styles/PostList.module.css";
+import Edit from "./Edit";
 
 export default function PostList({ postAll, email }) {
   const router = useRouter();
@@ -9,38 +10,34 @@ export default function PostList({ postAll, email }) {
   return (
     <div>
       {postAll.map((m) => (
-        <Segment key={m.id} raised>
+        <Segment
+          className={styles.wrap}
+          onClick={() => router.push(`/${email}/${m.title}`)}
+          key={m.id}
+          raised
+        >
           <Item.Group divided style={{ display: "flex" }}>
-            <Item onClick={() => router.push(`/${email}/${m.title}`)}>
-              <Item.Image src={m.thumbnail} size="small" />
+            <Item>
+              <img className={styles.thumbnail} src={m.thumbnail} />
               <Item.Content>
-                <Item.Header as="h1">{m.title}</Item.Header>
+                <div className={styles.content_first}>
+                  <Item.Extra>
+                    <Label>{m.category}</Label>
+                  </Item.Extra>
+                  {status === "authenticated" &&
+                    session.user.email == `${email}@gmail.com` && (
+                      <Edit id={m.id} email={email} title={m.title} />
+                    )}
+                </div>
+                <Item.Header>
+                  <h2>{m.title}</h2>
+                </Item.Header>
                 <Item.Meta>
-                  <span className="cinema">{m.desc}</span>
+                  <span>{m.desc}</span>
                 </Item.Meta>
                 <Item.Description>{m.createdAt.slice(0, 10)}</Item.Description>
-                <Item.Extra>
-                  <Label>{m.category}</Label>
-                </Item.Extra>
               </Item.Content>
             </Item>
-            {status === "authenticated" &&
-              session.user.email == `${email}@gmail.com` ? (
-                <Item.Content>
-                  <Delete id={m.id} />
-                  <Button
-                    floated="right"
-                    onClick={() =>
-                      router.push({
-                        pathname: `/${email}/${m.title}/edit`,
-                        query: { id: m.id },
-                      })
-                    }
-                  >
-                    수정
-                  </Button>
-                </Item.Content>
-              ) : null}
           </Item.Group>
         </Segment>
       ))}

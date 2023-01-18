@@ -9,8 +9,6 @@ export default async function ApiPostDelete(req, res) {
     });
     res.status(200).json({ deletePost });
   } else {
-    throw new Error(
-      `The HTTP ${req.method} method is not supported at this route.`
-    );
+    res.status(405).send();
   }
 }

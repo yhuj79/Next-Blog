@@ -1,0 +1,20 @@
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.title {
+    background-color: #1b1c1d;
+    padding: 10px 18px 8px 10px !important;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.title_icon {
+    font-size: 50px !important;
+}
+
+.button {
+    height: 50px;
+}

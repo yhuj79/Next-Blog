@@ -5,8 +5,15 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { Button, Input, Divider, Image } from "semantic-ui-react";
-import styles from "./Quill.module.css";
+import {
+  Button,
+  Input,
+  Divider,
+  Image,
+  Segment,
+  Card,
+} from "semantic-ui-react";
+import styles from "../../styles/Quill.module.css";
 import Spinner from "./Spinner";
 
 const ReactQuill = dynamic(
@@ -27,8 +34,8 @@ export default function Quill({ handler, loading, existingContents }) {
   const quillRef = useRef();
   const [loadQuill, setLoadQuill] = useState(false);
 
+  const [thumbnail, setThumbnail] = useState("/images/empty.png");
   const [title, setTitle] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
@@ -116,47 +123,55 @@ export default function Quill({ handler, loading, existingContents }) {
   }
 
   return (
-    <div>
-      <Divider />
+    <Segment>
+      <Card>
+        <Image src={thumbnail} size="huge" />
+        <Card.Content>
+          <Button>
+            <label htmlFor="input-file">Thumb</label>
+          </Button>
+          <input
+            id="input-file"
+            type="file"
+            onChange={(e) => thumbnailHandler(e)}
+            accept="image/*"
+            style={{ display: "none" }}
+          />
+        </Card.Content>
+      </Card>
       {!loading ? (
-        <Button onClick={onClick}>저장하기</Button>
+        <Button size="huge" onClick={onClick}>
+          저장하기
+        </Button>
       ) : (
-        <Button loading>저장하기</Button>
+        <Button size="huge" loading>
+          저장하기
+        </Button>
       )}
-      <Button onClick={testValue}>Value</Button>
-      <Button>
-        <label htmlFor="input-file">Thumbnail Upload</label>
-      </Button>
-      <input
-        id="input-file"
-        type="file"
-        onChange={(e) => thumbnailHandler(e)}
-        style={{ display: "none" }}
-      />
-      <Image
-        src={thumbnail ? thumbnail : "/images/imageEmpty.png"}
-        size="small"
-      />
-      <Divider />
       <Input
-        focus
-        placeholder="Title"
+        label="제목"
+        placeholder="제목을 입력하세요"
+        size="huge"
+        style={{ width: "100%" }}
         defaultValue={title}
         onChange={(e) => setTitle(e.target.value)}
       />
       <Input
-        focus
-        placeholder="Category"
+        label="카테고리"
+        placeholder="카테고리를 입력하세요"
+        size="huge"
+        style={{ width: "50%" }}
         defaultValue={category}
         onChange={(e) => setCategory(e.target.value)}
       />
       <Input
-        focus
-        placeholder="Desc"
+        label="부제목"
+        placeholder="부제목을 입력하세요"
+        size="huge"
+        style={{ width: "50%" }}
         defaultValue={desc}
         onChange={(e) => setDesc(e.target.value)}
       />
-      <Divider />
       <div className={styles.quill_div}>
         <ReactQuill
           className={styles.quill}
@@ -174,7 +189,7 @@ export default function Quill({ handler, loading, existingContents }) {
           </div>
         )}
       </div>
-    </div>
+    </Segment>
   );
 }
 

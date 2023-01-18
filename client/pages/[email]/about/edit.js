@@ -22,18 +22,18 @@ export default function AboutEdit({ user }) {
 
   async function onClickAbout() {
     setLoading(true);
-    try {
-      const body = { email, about };
-      await fetch("/api/about/aboutEdit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-      await router.push(`/${sliceEmail}/about`);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
+    const body = { email, about };
+    await fetch("/api/about/aboutEdit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }).then((res) => {
+      if (res.status === 200) {
+        router.push(`/${sliceEmail}/about`);
+      } else {
+        setLoading(false);
+      }
+    });
   }
 
   return (
