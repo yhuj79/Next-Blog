@@ -1,3 +1,7 @@
-.article img {
+.wrap {
+  /* width: 400px; */
+}
+
+#article img {
     max-width: 100%;
   }

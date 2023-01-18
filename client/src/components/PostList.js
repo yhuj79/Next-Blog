@@ -12,7 +12,7 @@ export default function PostList({ postAll, email }) {
         <Segment key={m.id} raised>
           <Item.Group divided style={{ display: "flex" }}>
             <Item onClick={() => router.push(`/${email}/${m.title}`)}>
-              <Item.Image src={`/images/${m.id}.png`} size="small" />
+              <Item.Image src={m.thumbnail} size="small" />
               <Item.Content>
                 <Item.Header as="h1">{m.title}</Item.Header>
                 <Item.Meta>

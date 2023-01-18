@@ -1,16 +1,17 @@
-import { getStorage, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../hooks/firebase";
+import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { Button, Input, Divider } from "semantic-ui-react";
+import { Button, Input, Divider, Image } from "semantic-ui-react";
+import styles from "./Quill.module.css";
+import Spinner from "./Spinner";
 
 const ReactQuill = dynamic(
   async () => {
     const { default: RQ } = await import("react-quill");
-
     return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
   },
   {
@@ -24,14 +25,17 @@ export default function Quill({ handler, loading, existingContents }) {
   const email = session?.user?.email;
   const sliceEmail = email?.slice(0, 9);
   const quillRef = useRef();
+  const [loadQuill, setLoadQuill] = useState(false);
 
   const [title, setTitle] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   const [category, setCategory] = useState("");
   const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
 
   function testValue() {
     console.log("title : ", title);
+    console.log("thumbnail : ", thumbnail);
     console.log("category : ", category);
     console.log("desc : ", desc);
     console.log("content : ", content);
@@ -40,22 +44,30 @@ export default function Quill({ handler, loading, existingContents }) {
   if (existingContents) {
     useEffect(() => {
       setTitle(existingContents[0].title);
+      setThumbnail(existingContents[0].thumbnail);
       setCategory(existingContents[0].category);
       setDesc(existingContents[0].desc);
       setContent(existingContents[0].content);
     }, [existingContents]);
   }
 
-  // const [imageUpload, setImageUpload] = useState(null);
+  async function thumbnailHandler(e) {
+    const file = e.target.files[0];
 
-  // function testUpload() {
-  //   console.log("upload start");
-  //   console.log(imageUpload);
-  //   const imageRef = ref(storage, `images/${imageUpload.name}`);
-  //   uploadBytes(imageRef, imageUpload).then((snapshot) => {
-  //     console.log("good");
-  //   });
-  // }
+    try {
+      const storageRef = ref(
+        storage,
+        `user/${sliceEmail}/thumbnail/${Date.now()}`
+      );
+      await uploadBytes(storageRef, file).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setThumbnail(url);
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const imageHandler = () => {
     const input = document.createElement("input");
@@ -67,19 +79,21 @@ export default function Quill({ handler, loading, existingContents }) {
       const editor = quillRef.current.getEditor();
       const file = input.files[0];
       const range = editor.getSelection(true);
-      editor.insertEmbed(range.index, "image", `/images/loading.gif`);
+      setLoadQuill(true);
 
       try {
-        const storageRef = ref(storage, `user/${sliceEmail}/${Date.now()}`);
+        const storageRef = ref(
+          storage,
+          `user/${sliceEmail}/contents/${Date.now()}`
+        );
         await uploadBytes(storageRef, file).then((snapshot) => {
           getDownloadURL(snapshot.ref).then((url) => {
             editor.insertEmbed(range.index, "image", url);
+            setLoadQuill(false);
           });
         });
-        editor.deleteText(range.index, 1);
-        editor.setSelection(range.index + 1);
       } catch (error) {
-        editor.deleteText(range.index, 1);
+        setLoadQuill(false);
         console.log(error);
       }
     });
@@ -97,7 +111,7 @@ export default function Quill({ handler, loading, existingContents }) {
   }, []);
 
   function onClick() {
-    const body = { email, title, category, desc, content };
+    const body = { email, title, thumbnail, category, desc, content };
     handler(body);
   }
 
@@ -110,13 +124,19 @@ export default function Quill({ handler, loading, existingContents }) {
         <Button loading>저장하기</Button>
       )}
       <Button onClick={testValue}>Value</Button>
-      {/* <input
+      <Button>
+        <label htmlFor="input-file">Thumbnail Upload</label>
+      </Button>
+      <input
+        id="input-file"
         type="file"
-        onChange={(e) => {
-          setImageUpload(e.target.files[0]);
-        }}
+        onChange={(e) => thumbnailHandler(e)}
+        style={{ display: "none" }}
       />
-      <Button onClick={testUpload}>upload</Button> */}
+      <Image
+        src={thumbnail ? thumbnail : "/images/imageEmpty.png"}
+        size="small"
+      />
       <Divider />
       <Input
         focus
@@ -136,15 +156,24 @@ export default function Quill({ handler, loading, existingContents }) {
         defaultValue={desc}
         onChange={(e) => setDesc(e.target.value)}
       />
-      <ReactQuill
-        placeholder="Content"
-        theme="snow"
-        forwardedRef={quillRef}
-        value={content}
-        onChange={setContent}
-        modules={modules}
-        formats={formats}
-      />
+      <Divider />
+      <div className={styles.quill_div}>
+        <ReactQuill
+          className={styles.quill}
+          placeholder="Content"
+          theme="snow"
+          forwardedRef={quillRef}
+          value={content}
+          onChange={setContent}
+          modules={modules}
+          formats={formats}
+        />
+        {loadQuill && (
+          <div className={styles.loader}>
+            <Spinner />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

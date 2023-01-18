@@ -60,6 +60,7 @@ model VerificationToken {
 model Post{
   id Int @id @default(autoincrement())
   title String? @db.Text
+  thumbnail String @db.Text
   category String
   desc String
   content String @db.LongText

@@ -3,7 +3,7 @@ import prisma from "../../../../hooks/prisma";
 export default async function ApiPostEdit(req, res) {
   if (req.method === "POST") {
     const id = req.query.id;
-    const { email, title, category, desc, content } = req.body;
+    const { email, title, thumbnail, category, desc, content } = req.body;
 
     const updatePost = await prisma.post.update({
       where: {
@@ -11,6 +11,7 @@ export default async function ApiPostEdit(req, res) {
       },
       data: {
         title: title,
+        thumbnail: thumbnail,
         category: category,
         desc: desc,
         content: content,

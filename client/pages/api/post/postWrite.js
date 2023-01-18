@@ -2,11 +2,12 @@ import prisma from "../../../hooks/prisma";
 
 export default async function ApiPostWrite(req, res) {
   if (req.method === "POST") {
-    const { email, title, category, desc, content } = req.body;
+    const { email, title, thumbnail, category, desc, content } = req.body;
 
     const post = await prisma.post.create({
       data: {
         title: title,
+        thumbnail: thumbnail,
         category: category,
         desc: desc,
         content: content,

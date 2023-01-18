@@ -3,7 +3,7 @@ import { Loader } from "semantic-ui-react";
 
 export default function Spinner() {
   return (
-    <div style={{ padding: "300px 0" }}>
+    <div style={{ padding: "250px 0" }}>
       <Head>
         <title>{`Loading...`}</title>
       </Head>
