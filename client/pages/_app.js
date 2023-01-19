@@ -1,6 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
 import "semantic-ui-css/semantic.min.css";
+import "../styles/global.css";
 import Top from "../src/components/Top";
 import Gnb from "../src/components/Gnb";
 import Bottom from "../src/components/Bottom";

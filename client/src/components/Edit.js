@@ -29,6 +29,7 @@ export default function Edit({ id, email, title }) {
           className={styles.icon}
           onClick={(e) => {
             e.stopPropagation();
+            setLoading(true);
             router.push({
               pathname: `/${email}/${title}/edit`,
               query: { id: id },
@@ -48,6 +49,6 @@ export default function Edit({ id, email, title }) {
       </div>
     );
   } else {
-    return <Icon name="spinner" loading />;
+    return <Icon name="spinner" style={{ marginTop: "12px" }} loading />;
   }
 }

@@ -10,13 +10,13 @@ export default function Gnb() {
   return (
     <Menu className={styles.wrap} inverted>
       <Link href={`/${email}`}>
-        <Menu.Item name="글" />
+        <Menu.Item className={styles.item} name="글" />
       </Link>
       <Link href={`/${email}/about`}>
-        <Menu.Item name="소개" />
+        <Menu.Item className={styles.item} name="소개" />
       </Link>
       {/* <Link href={`/${email}/category`}>
-        <Menu.Item name="카테고리" />
+        <Menu.Item className={styles.item} name="카테고리" />
       </Link> */}
     </Menu>
   );

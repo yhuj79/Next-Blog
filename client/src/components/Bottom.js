@@ -1,16 +1,7 @@
-import React from "react";
+import styles from "../../styles/Bottom.module.css";
 
 export default function Bottom() {
   return (
-    <div
-      style={{
-        marginTop: "20px",
-        padding: "40px 0",
-        borderTop: "1px solid #999",
-        textAlign: "center",
-      }}
-    >
-      Copyright © yhuj79. Built with Next.js
-    </div>
+    <div className={styles.wrap}>Copyright © yhuj79. Built with Next.js</div>
   );
 }
