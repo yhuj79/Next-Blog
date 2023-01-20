@@ -109,7 +109,18 @@ export default function Quill({ handler, loading, existingContents }) {
   }, []);
 
   function onClick() {
-    const body = { email, title, thumbnail, category, desc, content };
+    const createdAt = new Date();
+    createdAt.setHours(createdAt.getHours() + 9);
+    console.log(createdAt);
+    const body = {
+      email,
+      title,
+      createdAt,
+      thumbnail,
+      category,
+      desc,
+      content,
+    };
     handler(body);
   }
 

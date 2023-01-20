@@ -17,6 +17,11 @@
 
 .input input {
     width: 0%;
+    font-size: 18px;
+}
+
+.input input::placeholder {
+    font-size: 18px;
 }
 
 .input div,

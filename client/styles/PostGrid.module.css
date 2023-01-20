@@ -2,6 +2,12 @@
   /* width: 400px;
 } */
 
+.thumbnail_img {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+}
+
 #article img {
-    max-width: 100%;
-  }
+  max-width: 100%;
+}

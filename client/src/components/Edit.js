@@ -11,10 +11,13 @@ export default function Edit({ id, email, title }) {
   async function onClickDelete() {
     try {
       setLoading(true);
-      await fetch(`api/post/delete/${id}`, {
-        method: "DELETE",
-      });
-      await router.reload();
+      await fetch(
+        `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/post/delete/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      await router.push(`/${email}`);
     } catch (error) {
       setLoading(false);
       console.log(error);
