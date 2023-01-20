@@ -6,12 +6,13 @@ import styles from "../../styles/Edit.module.css";
 export default function Edit({ id, email, title }) {
   const router = useRouter();
 
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [editLoad, setEditLoad] = useState(false);
+  const [modalLoad, setModalLoad] = useState(false);
 
   async function onClickDelete() {
     try {
-      setLoading(true);
+      setModalLoad(true);
       await fetch(
         `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/post/delete/${id}`,
         {
@@ -20,7 +21,7 @@ export default function Edit({ id, email, title }) {
       );
       await router.push(`/${email}`);
     } catch (error) {
-      setLoading(false);
+      setModalLoad(false);
       setOpen(false);
       console.log(error);
     }
@@ -28,13 +29,13 @@ export default function Edit({ id, email, title }) {
 
   return (
     <div className={styles.wrap}>
-      {!loading ? (
+      {!editLoad ? (
         <Icon
           name="edit"
           className={styles.icon}
           onClick={(e) => {
             e.stopPropagation();
-            setLoading(true);
+            setEditLoad(true);
             router.push({
               pathname: `/${email}/${title}/edit`,
               query: { id: id },
@@ -50,7 +51,7 @@ export default function Edit({ id, email, title }) {
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          !loading && (
+          !editLoad && (
             <Icon
               name="trash alternate"
               className={styles.icon}
@@ -70,7 +71,7 @@ export default function Edit({ id, email, title }) {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          {!loading ? (
+          {!modalLoad ? (
             <Button
               color="red"
               onClick={(e) => {
