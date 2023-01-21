@@ -64,7 +64,7 @@ export default function Edit({ id, email, title }) {
           <Icon name="warning circle" color="red" />
           게시물 삭제
         </Modal.Header>
-        <Modal.Content image>
+        <Modal.Content>
           <Modal.Description>
             <Header>{title}</Header>
             <p>정말로 삭제하시겠습니까?</p>

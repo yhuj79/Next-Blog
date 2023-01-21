@@ -1,4 +1,5 @@
 .wrap {
+    max-width: 940px;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -17,7 +18,7 @@
     margin-right: 15px;
 }
 
-.content_first {
+.content_top {
     display: flex;
     justify-content: space-between;
     margin-bottom: 7px;

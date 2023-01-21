@@ -18,9 +18,11 @@ export default function PostList({ postAll, email }) {
         >
           <Item.Group divided style={{ display: "flex" }}>
             <Item>
-              <img className={styles.thumbnail} src={m.thumbnail} />
+              <div>
+                <img className={styles.thumbnail} src={m.thumbnail} />
+              </div>
               <Item.Content>
-                <div className={styles.content_first}>
+                <div className={styles.content_top}>
                   <Item.Extra>
                     <Label>{m.category}</Label>
                   </Item.Extra>
