@@ -3,10 +3,12 @@ import { useRouter } from "next/router";
 import Spinner from "../../src/components/Spinner";
 import PostList from "../../src/components/PostList";
 import prisma from "../../hooks/prisma";
+import EmptySpace from "../../src/components/EmptySpace";
+import { Segment } from "semantic-ui-react";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  
+  // console.log(postAll);
   if (router.isFallback) {
     return <Spinner />;
   } else {
@@ -18,9 +20,11 @@ export default function PostAll({ postAll, email }) {
         {postAll.length > 0 ? (
           <PostList postAll={postAll} email={email} />
         ) : (
-          <div>
-            <h1>아직 등록된 글이 없습니다.</h1>
-          </div>
+          <Segment style={{ marginBottom: "14px" }}>
+            <div>
+              <EmptySpace router={router} email={email} type={"글"} />
+            </div>
+          </Segment>
         )}
       </div>
     );
@@ -40,9 +44,18 @@ export async function getServerSideProps(context) {
     },
   });
 
+  function sortDate(list) {
+    const sorted_list = list
+      .sort(function (a, b) {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      })
+      .reverse();
+    return sorted_list;
+  }
+
   if (user.length > 0) {
     const email = context.params.email;
-    const postAll = JSON.parse(JSON.stringify(post));
+    const postAll = sortDate(JSON.parse(JSON.stringify(post)));
     return {
       props: { postAll, email },
     };

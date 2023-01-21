@@ -10,3 +10,12 @@
 .icon:hover {
     opacity: 0.6;
 }
+
+.icon_about {
+    float: right;
+    cursor: pointer;
+}
+
+.icon_about:hover {
+    opacity: 0.6;
+}

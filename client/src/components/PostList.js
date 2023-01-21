@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { Segment, Image, Item, Label, Button, Icon } from "semantic-ui-react";
+import Image from "next/image";
+import { Segment, Item, Label, Button, Icon } from "semantic-ui-react";
 import { useSession } from "next-auth/react";
 import styles from "../../styles/PostList.module.css";
 import Edit from "./Edit";
@@ -19,7 +20,14 @@ export default function PostList({ postAll, email }) {
           <Item.Group divided style={{ display: "flex" }}>
             <Item>
               <div>
-                <img className={styles.thumbnail} src={m.thumbnail} />
+                <Image
+                  className={styles.thumbnail}
+                  src={m.thumbnail}
+                  width={258}
+                  height={128}
+                  alt={m.id}
+                  priority
+                />
               </div>
               <Item.Content>
                 <div className={styles.content_top}>

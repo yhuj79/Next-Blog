@@ -42,7 +42,7 @@ export default function Write() {
       >
         <Modal.Header>
           <Icon name="warning circle" color="red" />
-          저장 에러
+          작성 오류
         </Modal.Header>
         <Modal.Content>
           <Modal.Description>
