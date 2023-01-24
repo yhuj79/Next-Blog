@@ -22,7 +22,7 @@ export default function PostAll({ postAll, email }) {
             <PostList
               key={m.id}
               id={m.id}
-              email={m.email}
+              email={email}
               title={m.title}
               thumbnail={m.thumbnail}
               category={m.category}

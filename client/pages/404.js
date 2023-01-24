@@ -10,12 +10,14 @@ export default function Error404() {
         <title>{`404 | Next-Blog`}</title>
       </Head>
       <div className={styles.wrap_box}>
-        <Header as="h1">
-          <Icon name="warning circle" color="red" />
+        <Icon name="warning circle" color="red" size="huge" />
+        <Header as="h1" className={styles.title}>
           <Header.Content>404 : 페이지를 찾을 수 없습니다.</Header.Content>
         </Header>
         <Link href="/">
-          <Button size="large">Next-Blog 메인</Button>
+          <Button className={styles.button} size="large">
+            Next-Blog 메인
+          </Button>
         </Link>
       </div>
     </div>
