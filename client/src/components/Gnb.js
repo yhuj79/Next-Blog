@@ -15,9 +15,9 @@ export default function Gnb() {
       <Link href={`/${email}/about`}>
         <Menu.Item className={styles.item} name="소개" />
       </Link>
-      {/* <Link href={`/${email}/category`}>
-        <Menu.Item className={styles.item} name="카테고리" />
-      </Link> */}
+      <Link href={`/${email}/search`}>
+        <Menu.Item className={styles.item} name="검색" />
+      </Link>
     </Menu>
   );
 }

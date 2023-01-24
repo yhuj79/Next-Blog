@@ -18,7 +18,18 @@ export default function PostAll({ postAll, email }) {
           <title>{`${email} | Next-Blog`}</title>
         </Head>
         {postAll.length > 0 ? (
-          <PostList postAll={postAll} email={email} />
+          postAll.map((m) => (
+            <PostList
+              key={m.id}
+              id={m.id}
+              email={m.email}
+              title={m.title}
+              thumbnail={m.thumbnail}
+              category={m.category}
+              desc={m.desc}
+              createdAt={m.createdAt}
+            />
+          ))
         ) : (
           <Segment style={{ marginBottom: "14px" }}>
             <div>
