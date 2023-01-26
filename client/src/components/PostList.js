@@ -20,7 +20,7 @@ export default function PostList({
   return (
     <Segment
       className={styles.wrap}
-      onClick={() => router.push(`/${email}/${title}`)}
+      onClick={() => router.push(`/${email}/${encodeURIComponent(title)}`)}
       raised
     >
       <Item.Group divided style={{ display: "flex" }}>

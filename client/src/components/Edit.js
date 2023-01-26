@@ -37,7 +37,7 @@ export default function Edit({ id, email, title }) {
             e.stopPropagation();
             setEditLoad(true);
             router.push({
-              pathname: `/${email}/${title}/edit`,
+              pathname: `/${email}/${encodeURIComponent(title)}/edit`,
               query: { id: id },
             });
           }}

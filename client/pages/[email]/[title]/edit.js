@@ -18,7 +18,7 @@ export default function Edit({ existingContents }) {
       body: JSON.stringify(body),
     }).then((res) => {
       if (res.status === 200) {
-        router.push(`/${email}/${encodeURI(body.title)}`);
+        router.push(`/${email}/${encodeURIComponent(body.title)}`);
       } else {
         setLoading(false);
       }

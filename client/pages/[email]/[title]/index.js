@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Spinner from "../../../src/components/Spinner";
 import PostGrid from "../../../src/components/PostGrid";
 import prisma from "../../../hooks/prisma";
+import { unescape } from "querystring";
 
 export default function PostContents({ postContents, title }) {
   const router = useRouter();
@@ -38,7 +39,7 @@ export async function getStaticProps({ params }) {
   const post = await prisma.post.findMany({
     where: {
       email: `${params.email}@gmail.com`,
-      title: params.title,
+      title: unescape(params.title),
     },
   });
 
