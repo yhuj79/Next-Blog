@@ -1,0 +1,29 @@
+.wrap {
+    display: flex;
+    padding-top: 20px !important;
+    padding-bottom: 10px !important;
+}
+
+.link {
+    margin-right: 5px;
+}
+
+.button {
+    opacity: 0.95;
+}
+
+.button_act {
+    background-color: #121212 !important;
+    color: #FFF !important;
+}
+
+.overflow {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 8px 0;
+}
+
+.overflow::-webkit-scrollbar-track {
+    display: none;
+}
