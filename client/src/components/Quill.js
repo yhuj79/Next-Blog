@@ -222,13 +222,12 @@ export default function Quill({ handler, loading, existingContents }) {
 }
 
 const toolbarOptions = [
-  ["link", "image", "video"],
   [{ header: [1, 2, 3, false] }],
   ["bold", "italic", "underline", "strike"],
   ["blockquote"],
   [{ list: "ordered" }, { list: "bullet" }],
   [{ color: [] }, { background: [] }],
-  [{ align: [] }],
+  [{ align: [] }, "link", "image"],
 ];
 export const formats = [
   "header",

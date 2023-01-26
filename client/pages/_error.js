@@ -10,8 +10,8 @@ function Error({ statusCode }) {
         <title>{`${statusCode} | Next-Blog`}</title>
       </Head>
       <div className={styles.wrap_box}>
-        <Header as="h1">
-          <Icon name="warning circle" color="red" />
+        <Icon name="warning circle" color="red" size="huge" />
+        <Header as="h1" className={styles.title}>
           <Header.Content>
             {statusCode
               ? `An error ${statusCode} occurred on server`
@@ -19,7 +19,9 @@ function Error({ statusCode }) {
           </Header.Content>
         </Header>
         <Link href="/">
-          <Button size="large">Next-Blog 메인</Button>
+          <Button className={styles.button} size="large">
+            Next-Blog 메인
+          </Button>
         </Link>
       </div>
     </div>

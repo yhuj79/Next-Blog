@@ -32,6 +32,12 @@ export default function search() {
       });
   }
 
+  function handleOnKeyPress(e) {
+    if (e.key === "Enter") {
+      searchPost();
+    }
+  }
+
   return (
     <Segment>
       <Head>
@@ -48,6 +54,7 @@ export default function search() {
         <input
           style={{ width: "0%" }}
           onChange={(e) => handleChange(e.target.value)}
+          onKeyPress={handleOnKeyPress}
         />
         {!loading ? (
           <Button type="submit" onClick={searchPost}>

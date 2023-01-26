@@ -1,24 +1,25 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Spinner from "../../src/components/Spinner";
-import PostList from "../../src/components/PostList";
-import prisma from "../../hooks/prisma";
-import EmptySpace from "../../src/components/EmptySpace";
+import Spinner from "../../../src/components/Spinner";
+import PostList from "../../../src/components/PostList";
+import prisma from "../../../hooks/prisma";
+import EmptySpace from "../../../src/components/EmptySpace";
 import { Segment } from "semantic-ui-react";
-import Category from "../../src/components/Category";
+import Category from "../../../src/components/Category";
 
-export default function PostAll({ postAll, email }) {
+export default function PageCategory({ postAll, filteredAll, email }) {
   const router = useRouter();
-  // console.log(postAll);
+  const { category } = router.query;
+
   return (
     <div>
       <Head>
         <title>{`${email} | Next-Blog`}</title>
       </Head>
-      {postAll.length > 0 ? (
+      {filteredAll.length > 0 && (
         <Segment>
-          <Category postAll={postAll} email={email} act={"All"} />
-          {postAll.map((m) => (
+          <Category postAll={postAll} email={email} act={category} />
+          {filteredAll.map((m) => (
             <PostList
               key={m.id}
               id={m.id}
@@ -30,12 +31,6 @@ export default function PostAll({ postAll, email }) {
               createdAt={m.createdAt}
             />
           ))}
-        </Segment>
-      ) : (
-        <Segment style={{ marginBottom: "14px" }}>
-          <div>
-            <EmptySpace router={router} email={email} type={"글"} />
-          </div>
         </Segment>
       )}
     </div>
@@ -55,6 +50,13 @@ export async function getServerSideProps(context) {
     },
   });
 
+  const filtered = await prisma.post.findMany({
+    where: {
+      email: `${context.params.email}@gmail.com`,
+      category: context.params.category,
+    },
+  });
+
   function sortDate(list) {
     const sorted_list = list
       .sort(function (a, b) {
@@ -67,8 +69,9 @@ export async function getServerSideProps(context) {
   if (user.length > 0) {
     const email = context.params.email;
     const postAll = sortDate(JSON.parse(JSON.stringify(post)));
+    const filteredAll = sortDate(JSON.parse(JSON.stringify(filtered)));
     return {
-      props: { postAll, email },
+      props: { postAll, filteredAll, email },
     };
   } else {
     return {

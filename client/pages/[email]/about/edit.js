@@ -73,13 +73,12 @@ export async function getServerSideProps(context) {
 }
 
 const toolbarOptions = [
-  ["link", "image", "video"],
   [{ header: [1, 2, 3, false] }],
   ["bold", "italic", "underline", "strike"],
   ["blockquote"],
   [{ list: "ordered" }, { list: "bullet" }],
   [{ color: [] }, { background: [] }],
-  [{ align: [] }],
+  [{ align: [] }, "link"],
 ];
 export const formats = [
   "header",
@@ -97,8 +96,6 @@ export const formats = [
   "background",
   "color",
   "link",
-  "image",
-  "video",
   "width",
 ];
 const modules = {
