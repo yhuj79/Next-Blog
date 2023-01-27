@@ -13,9 +13,13 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <SessionProvider session={session}>
       <div style={{ maxWidth: 950, margin: "0 auto", padding: "0 5px" }}>
         {router.pathname !== "/_error" && router.pathname !== "/404" && <Top />}
-        {router.pathname !== "/_error" && router.pathname !== "/404" && <Gnb />}
+        {router.pathname !== "/_error" &&
+          router.pathname !== "/404" &&
+          router.pathname !== "/" && <Gnb />}
         <Component {...pageProps} />
-        {router.pathname !== "/_error" && router.pathname !== "/404" && <Bottom />}
+        {router.pathname !== "/_error" && router.pathname !== "/404" && (
+          <Bottom />
+        )}
       </div>
     </SessionProvider>
   );

@@ -27,12 +27,14 @@ export default function Top() {
 
   return (
     <div className={styles.wrap}>
-      <Link href={email ? `/${email}` : "/"}>
-        <Header className={styles.title} as="h1" inverted>
+      <Header className={styles.title_div} as="h1" inverted>
+        <Link href={"/"} className={styles.title_icon_link}>
           <Icon className={styles.title_icon} name="blogger" />
+        </Link>
+        <Link href={email ? `/${email}` : "/"} className={styles.title_text_link}>
           <Header.Content>{email ? email : "NextBlog"}</Header.Content>
-        </Header>
-      </Link>
+        </Link>
+      </Header>
       {!isMobile ? (
         <div>
           {status === "authenticated" ? (
