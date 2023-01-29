@@ -15,7 +15,10 @@ export default function AboutEdit({ user }) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const email = session?.user?.email;
-  const sliceEmail = email?.slice(0, 9);
+  const sliceEmail = session?.user.email.substring(
+    0,
+    session.user.email.length - 10
+  );
 
   const [loading, setLoading] = useState(false);
   const [about, setAbout] = useState(`${user.map((m) => m.about)}`);

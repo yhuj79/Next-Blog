@@ -21,8 +21,10 @@ export default function Top() {
   const router = useRouter();
   const { email } = router.query;
   const { data: session, status } = useSession();
-  const sliceEmail = session?.user.email.slice(0, 9);
-
+  const sliceEmail = session?.user.email.substring(
+    0,
+    session.user.email.length - 10
+  );
   const isMobile = useIsMobile();
 
   return (
@@ -31,7 +33,10 @@ export default function Top() {
         <Link href={"/"} className={styles.title_icon_link}>
           <Icon className={styles.title_icon} name="blogger" />
         </Link>
-        <Link href={email ? `/${email}` : "/"} className={styles.title_text_link}>
+        <Link
+          href={email ? `/${email}` : "/"}
+          className={styles.title_text_link}
+        >
           <Header.Content>{email ? email : "NextBlog"}</Header.Content>
         </Link>
       </Header>

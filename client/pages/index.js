@@ -6,7 +6,10 @@ import { Button, Header, Segment } from "semantic-ui-react";
 export default function Home() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  const sliceEmail = session?.user.email.slice(0, 9);
+  const sliceEmail = session?.user.email.substring(
+    0,
+    session.user.email.length - 10
+  );
 
   return (
     <Segment inverted style={{ marginTop: "-1px", borderTopLeftRadius: 0 }}>

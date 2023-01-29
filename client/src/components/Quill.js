@@ -23,7 +23,10 @@ export default function Quill({ handler, loading, existingContents }) {
   const router = useRouter();
   const { data: session, status } = useSession();
   const email = session?.user?.email;
-  const sliceEmail = email?.slice(0, 9);
+  const sliceEmail = session?.user.email.substring(
+    0,
+    session.user.email.length - 10
+  );
   const quillRef = useRef();
 
   const [loadQuill, setLoadQuill] = useState(false);
