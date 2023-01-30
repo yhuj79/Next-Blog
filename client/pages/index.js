@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { Button, Header, Segment } from "semantic-ui-react";
 
 export default function Home() {
@@ -10,6 +11,8 @@ export default function Home() {
     0,
     session.user.email.length - 10
   );
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <Segment inverted style={{ marginTop: "-1px", borderTopLeftRadius: 0 }}>
@@ -31,9 +34,20 @@ export default function Home() {
             Welcome! {sliceEmail}
           </Header>
           <Header inverted as="h3">
-            <Button onClick={() => router.push(`/${sliceEmail}`)}>
-              내 블로그로 이동
-            </Button>
+            {!loading ? (
+              <Button
+                onClick={() => {
+                  setLoading(true);
+                  router.push(`/${sliceEmail}`);
+                }}
+              >
+                내 블로그로 이동
+              </Button>
+            ) : (
+              <Button loading>
+                내 블로그로 이동
+              </Button>
+            )}
           </Header>
         </div>
       )}

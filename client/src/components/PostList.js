@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { Segment, Item, Label, Button, Icon } from "semantic-ui-react";
+import { Segment, Item, Label, Button, Icon, Loader } from "semantic-ui-react";
 import { useSession } from "next-auth/react";
 import styles from "../../styles/PostList.module.css";
 import Edit from "./Edit";
+import { useState } from "react";
 
 export default function PostList({
   id,
@@ -16,11 +17,15 @@ export default function PostList({
 }) {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const [loading, setLoading] = useState(false);
 
   return (
     <Segment
       className={styles.wrap}
-      onClick={() => router.push(`/${email}/${encodeURIComponent(title)}`)}
+      onClick={() => {
+        setLoading(true);
+        router.push(`/${email}/${encodeURIComponent(title)}`);
+      }}
       raised
     >
       <Item.Group divided style={{ display: "flex" }}>
@@ -39,6 +44,14 @@ export default function PostList({
             <div className={styles.content_top}>
               <Item.Extra>
                 <Label>{category}</Label>
+                {loading && (
+                  <Loader
+                    style={{ display: "inline-block" }}
+                    inline="centered"
+                    active
+                    size="tiny"
+                  />
+                )}
               </Item.Extra>
               {status === "authenticated" &&
                 session.user.email == `${email}@gmail.com` && (
