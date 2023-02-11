@@ -41,11 +41,11 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 
 ### :clipboard: 주요 기능 설명
 
-- [Home](https://github.com/yhuj79/Next-Blog/wiki)
-- [Blog Main](https://github.com/yhuj79/Next-Blog/wiki/Blog-Main)
-- [Blog Post](https://github.com/yhuj79/Next-Blog/wiki/Blog-Post)
-- [Blog About](https://github.com/yhuj79/Next-Blog/wiki/Blog-About)
-- [Blog Write](https://github.com/yhuj79/Next-Blog/wiki/Blog-Write)
+- [Platform Home](https://github.com/yhuj79/Next-Blog/wiki/Platform-Home)
+- [Post (List)](https://github.com/yhuj79/Next-Blog/wiki/Post-(List))
+- [Post (Grid)](https://github.com/yhuj79/Next-Blog/wiki/Post-(Grid))
+- [About](https://github.com/yhuj79/Next-Blog/wiki/About)
+- [Write](https://github.com/yhuj79/Next-Blog/wiki/Write)
 - [Quill](https://github.com/yhuj79/Next-Blog/wiki/Quill)
 
 ### :page_facing_up: API
@@ -57,7 +57,7 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 - [글 수정](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/post/edit/%5Bid%5D.js)
 - [글 삭제](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/post/delete/%5Bid%5D.js)
 - [소개 글 업데이트](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/about/aboutEdit.js)
-- [글 검색](https://github.com/yhuj79/Next-Blog/tree/main/client/pages/api/search/%5Bemail%5D)
+- [글 검색](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/search/%5Bemail%5D/%5Binput%5D.js)
 
 ### :open_file_folder: Package
 
@@ -71,6 +71,8 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 - [x] dompurify
 
 ## Reference
+
+[https://www.prisma.io/docs/concepts/components/prisma-schema](https://www.prisma.io/docs/concepts/components/prisma-schema)
 
 [https://vercel.com/guides/nextjs-prisma-postgres](https://vercel.com/guides/nextjs-prisma-postgres)
 
