@@ -11,7 +11,7 @@
 
 .thumbnail {
     width: 260px;
-    height: 130px;
+    height: 100%;
     object-fit: cover;
     border: 1px solid #DBDBDB;
     border-radius: 7px;
@@ -22,4 +22,32 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 7px;
+}
+
+.label {
+    margin-top: 0 !important;
+}
+
+.desc {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 767px) {
+    .thumbnail {
+        width: 100%;
+        height: 200px;
+        margin-right: 0;
+    }
+
+    .label {
+        margin-top: 7px !important;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .thumbnail {
+        width: 100%;
+        height: 130px;
+        margin-right: 0;
+    }
 }

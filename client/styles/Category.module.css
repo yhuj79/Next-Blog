@@ -1,18 +1,37 @@
 .wrap {
     display: flex;
-    padding-top: 20px !important;
-    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 5px !important;
 }
 
 .link {
     margin-right: 5px;
 }
 
+.button_all {
+    opacity: 0.95;
+    border-radius: 20px !important;
+    height: 35px;
+    background-color: #0066CC !important;
+    color: #FFF !important;
+}
+
 .button {
     opacity: 0.95;
+    border-radius: 20px !important;
+    height: 35px;
+}
+
+.button_act_all {
+    border-radius: 20px !important;
+    height: 35px;
+    background-color: #1B1C1D !important;
+    color: #8BBDFF !important;
 }
 
 .button_act {
+    border-radius: 20px !important;
+    height: 35px;
     background-color: #1B1C1D !important;
     color: #FFF !important;
 }
@@ -21,9 +40,20 @@
     overflow-y: hidden;
     overflow-x: scroll;
     white-space: nowrap;
-    padding: 8px 0;
+    padding-bottom: 5px;
 }
 
 .overflow::-webkit-scrollbar-track {
-    display: none;
+    display: block;
+}
+
+.overflow::-webkit-scrollbar {
+    height: 5px;
+    background-color: #F5F5F5;
+    border-radius: 10px !important;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+    background-color: #AAA;
+    border-radius: 10px !important;
 }

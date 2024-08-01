@@ -18,11 +18,10 @@ export default function Category({ postAll, email, act }) {
     <Segment raised className={styles.wrap}>
       <Link
         className={styles.link}
-        style={{ marginTop: "8px" }}
         href={{ pathname: `/${email}` }}
       >
         <Button
-          className={act == "All" ? styles.button_act : styles.button}
+          className={act == "All" ? styles.button_act_all : styles.button_all}
           size="tiny"
         >
           All
@@ -37,7 +36,11 @@ export default function Category({ postAll, email, act }) {
             <Link
               className={styles.link}
               key={m.category}
-              href={{ pathname: `/${email}/category/${encodeURIComponent(m.category)}` }}
+              href={{
+                pathname: `/${email}/category/${encodeURIComponent(
+                  m.category
+                )}`,
+              }}
             >
               <Button
                 className={

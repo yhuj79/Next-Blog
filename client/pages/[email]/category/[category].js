@@ -17,7 +17,7 @@ export default function PageCategory({ postAll, filteredAll, email }) {
         <title>{`${email} | Next-Blog`}</title>
       </Head>
       {filteredAll.length > 0 && (
-        <Segment>
+        <>
           <Category postAll={postAll} email={email} act={category} />
           {filteredAll.map((m) => (
             <PostList
@@ -31,7 +31,7 @@ export default function PageCategory({ postAll, filteredAll, email }) {
               createdAt={m.createdAt}
             />
           ))}
-        </Segment>
+        </>
       )}
     </div>
   );

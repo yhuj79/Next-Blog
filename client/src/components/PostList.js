@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import Image from "next/image";
 import { Segment, Item, Label, Button, Icon, Loader } from "semantic-ui-react";
 import { useSession } from "next-auth/react";
 import styles from "../../styles/PostList.module.css";
@@ -30,19 +29,10 @@ export default function PostList({
     >
       <Item.Group divided style={{ display: "flex" }}>
         <Item>
-          <div>
-            <Image
-              className={styles.thumbnail}
-              src={thumbnail}
-              width={258}
-              height={128}
-              alt={id}
-              priority
-            />
-          </div>
+          <img className={styles.thumbnail} src={thumbnail} alt={id} />
           <Item.Content>
             <div className={styles.content_top}>
-              <Item.Extra>
+              <Item.Extra className={styles.label}>
                 <Label>{category}</Label>
                 {loading && (
                   <Loader
@@ -62,7 +52,7 @@ export default function PostList({
               <h2>{title}</h2>
             </Item.Header>
             <Item.Meta>
-              <span>{desc}</span>
+              <span className={styles.desc}>{desc}</span>
             </Item.Meta>
             <Item.Description>{createdAt.slice(0, 10)}</Item.Description>
           </Item.Content>

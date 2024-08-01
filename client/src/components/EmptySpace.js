@@ -10,6 +10,7 @@ export default function EmptySpace({ router, email, type }) {
       {status === "authenticated" &&
         session.user.email == `${email}@gmail.com` && (
           <Button
+            primary
             className={styles.button}
             onClick={() =>
               type == "글"

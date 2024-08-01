@@ -1,4 +1,12 @@
-import { Image, Header, Icon, Button, Label, Segment } from "semantic-ui-react";
+import {
+  Image,
+  Header,
+  Icon,
+  Button,
+  Label,
+  Segment,
+  Loader,
+} from "semantic-ui-react";
 import { useMediaQuery } from "react-responsive";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -42,10 +50,14 @@ export default function Top() {
       </Header>
       {!isMobile ? (
         <div>
-          {status === "authenticated" ? (
-            <div>
+          {status === "loading" ? (
+            <Loader />
+          ) : status === "authenticated" ? (
+            <div style={{ marginRight: "-3px" }}>
               {session.user.email == `${email}@gmail.com` ? (
                 <Button
+                  primary
+                  style={{ marginRight: "10px" }}
                   className={styles.button}
                   onClick={() => router.push(`/${email}/write`)}
                 >
@@ -53,6 +65,8 @@ export default function Top() {
                 </Button>
               ) : (
                 <Button
+                  primary
+                  style={{ marginRight: "10px" }}
                   className={styles.button}
                   onClick={() => router.push(`/${sliceEmail}`)}
                 >
@@ -60,8 +74,9 @@ export default function Top() {
                 </Button>
               )}
               <Button
+                secondary
                 className={styles.button}
-                style={{ marginTop: "-3px" }}
+                style={{ marginTop: "-4px" }}
                 animated="fade"
                 onClick={() => signOut()}
               >
@@ -74,6 +89,8 @@ export default function Top() {
             </div>
           ) : (
             <Button
+              secondary
+              style={{ marginRight: "0" }}
               className={styles.button}
               animated="fade"
               onClick={() => signIn("google")}

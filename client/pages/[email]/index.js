@@ -16,7 +16,7 @@ export default function PostAll({ postAll, email }) {
         <title>{`${email} | Next-Blog`}</title>
       </Head>
       {postAll.length > 0 ? (
-        <Segment>
+        <>
           <Category postAll={postAll} email={email} act={"All"} />
           {postAll.map((m) => (
             <PostList
@@ -30,7 +30,7 @@ export default function PostAll({ postAll, email }) {
               createdAt={m.createdAt}
             />
           ))}
-        </Segment>
+        </>
       ) : (
         <Segment style={{ marginBottom: "14px" }}>
           <div>

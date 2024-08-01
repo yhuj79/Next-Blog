@@ -39,4 +39,5 @@
 
 .button {
     height: 50px;
+    border-radius: 7px !important;
 }
