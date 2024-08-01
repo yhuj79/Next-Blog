@@ -7,7 +7,7 @@ import prisma from "../../../hooks/prisma";
 export default function Edit({ existingContents }) {
   const router = useRouter();
   const { id, email, title } = router.query;
-
+console.log(email)
   const [loading, setLoading] = useState(false);
 
   async function handler(body) {
@@ -30,11 +30,7 @@ export default function Edit({ existingContents }) {
       <Head>
         <title>{`글 수정 | ${email}`}</title>
       </Head>
-      <Quill
-        handler={handler}
-        loading={loading}
-        existingContents={existingContents}
-      />
+      <Quill handler={handler} loading={loading} existingContents={existingContents} />
     </div>
   );
 }
