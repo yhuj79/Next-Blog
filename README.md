@@ -2,9 +2,7 @@
 
 Google 계정으로 간편하게 생성하는 블로그 플랫폼
 
-:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-drab-chi.vercel.app/">Next-Blog Home</a>
-&emsp;:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-drab-chi.vercel.app/tu7348001">Blog Sample 1</a>
-&emsp;:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-drab-chi.vercel.app/tu5184652">Blog Sample 2</a>
+:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-service.vercel.app">Next-Blog Home</a>
 
 ## Built With
 

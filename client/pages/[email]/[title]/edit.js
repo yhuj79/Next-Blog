@@ -7,7 +7,7 @@ import prisma from "../../../hooks/prisma";
 export default function Edit({ existingContents }) {
   const router = useRouter();
   const { id, email, title } = router.query;
-
+console.log(email)
   const [loading, setLoading] = useState(false);
 
   async function handler(body) {
