@@ -1,4 +1,4 @@
-<img align=top src="https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/thumbnail.png" width="600">
+<img align=top src="https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/thumbnail.png" width="500">
 
 Google 계정으로 간편하게 생성하는 블로그 플랫폼
 
@@ -17,17 +17,22 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 ## About The Project
 
 <div>
-    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/1.png width=400>
-    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/2.png width=400>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/1.png width=300>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/2.png width=300>
 </div>
 <div>
-    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/3.png width=400>
-    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/4.png width=400>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/3.png width=300>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/4.png width=300>
+</div>
+<div>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/5.png width=300>
+    <img align=top src=https://raw.githubusercontent.com/yhuj79/Next-Blog/main/assets/6.png width=300>
 </div>
 
 ### :alarm_clock: 제작 기간
 
 - 2022.12.09 ~ 2023.01.30
+- 2024.08.01 ~ 2024.08.03 (수정)
 
 ### :gear: 개발 환경
 

@@ -21,7 +21,7 @@
 }
 
 .input input::placeholder {
-    font-size: 18px;
+    color: #B0B0B0 !important;
 }
 
 .input div,
@@ -54,6 +54,23 @@
     margin-top: 40px !important;
 }
 
+.button_trash {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.button_trash:hover {
+    background-color: #CACBCD;
+}
+
+.text_info {
+    font-size: 12px;
+    text-align: right;
+    color: #6A6A6A !important;
+}
+
 .quill_div {
     position: relative;
 }
@@ -78,6 +95,7 @@
 }
 
 .button button {
+    border-radius: 7px !important;
     margin: 0 !important;
     margin: 0 !important;
 }
@@ -93,7 +111,6 @@
 
     .input input::placeholder {
         font-size: 13px;
-        
     }
 
     .thumbnail_wrap {

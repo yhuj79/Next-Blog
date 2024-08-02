@@ -7,7 +7,7 @@ import { unescape } from "querystring";
 
 export default function PostContents({ postContents, title }) {
   const router = useRouter();
-  // console.log(postContents);
+  
   if (router.isFallback) {
     return <Spinner />;
   } else {

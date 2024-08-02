@@ -9,7 +9,7 @@ import Category from "../../src/components/Category";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
-  // console.log(postAll);
+
   return (
     <div>
       <Head>

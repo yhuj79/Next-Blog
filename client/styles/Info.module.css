@@ -1,0 +1,39 @@
+.wrap {
+    margin-top: -1px !important;
+    border-radius: 7px !important;
+    border-top-left-radius: 0 !important;
+}
+
+.info_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    flex-direction: column;
+}
+
+.text_small {
+    margin: 30px;
+    text-align: center;
+}
+
+.link {
+    margin: 10px 20px;
+}
+
+@media (max-width: 490px) {
+
+    .text_h1_email {
+        font-size: 20px !important;
+        font-weight: bold !important;
+    }
+
+    .text_h3 {
+        font-size: 15px !important;
+    }
+
+    .text_small {
+        margin: 30px 10px 15px;
+        font-size: 10px;
+    }
+}

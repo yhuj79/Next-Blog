@@ -134,7 +134,7 @@ export default function Quill({ handler, loading, existingContents }) {
           <Input
             className={styles.input}
             label={"ㅤ제목ㅤ"}
-            placeholder="제목을 입력하세요"
+            placeholder="제목을 입력하세요."
             size="huge"
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -142,7 +142,7 @@ export default function Quill({ handler, loading, existingContents }) {
           <Input
             className={styles.input}
             label={"ㅤ부제ㅤ"}
-            placeholder="부제를 입력하세요"
+            placeholder="부제를 입력하세요."
             size="huge"
             defaultValue={desc}
             onChange={(e) => setDesc(e.target.value)}
@@ -150,7 +150,7 @@ export default function Quill({ handler, loading, existingContents }) {
           <Input
             className={styles.input}
             label={"카테고리"}
-            placeholder="카테고리를 입력하세요"
+            placeholder="카테고리를 입력하세요."
             size="huge"
             defaultValue={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -182,6 +182,7 @@ export default function Quill({ handler, loading, existingContents }) {
               />
               {thumbnail != "/images/empty.png" && (
                 <Icon
+                  className={styles.button_trash}
                   name="trash alternate"
                   onClick={() => setThumbnail("/images/empty.png")}
                   bordered
@@ -191,11 +192,14 @@ export default function Quill({ handler, loading, existingContents }) {
           </Card>
         </div>
       </div>
+      <p className={styles.text_info}>
+        썸네일은 3:1 , 21:9 비율 등 가로가 긴 이미지를 권장합니다.
+      </p>
       <div className={styles.quill_div}>
         <ReactQuill
           className={styles.quill}
           style={loadQuill ? { opacity: 0.2 } : {}}
-          placeholder="Content"
+          placeholder="글 내용을 입력하세요."
           theme="snow"
           forwardedRef={quillRef}
           value={content}
@@ -211,11 +215,11 @@ export default function Quill({ handler, loading, existingContents }) {
       </div>
       <div className={styles.button}>
         {!loading ? (
-          <Button size="massive" onClick={onClick}>
+          <Button primary size="massive" onClick={onClick}>
             저장하기
           </Button>
         ) : (
-          <Button size="massive" loading>
+          <Button primary size="massive" loading>
             저장하기
           </Button>
         )}

@@ -20,6 +20,7 @@
 
 .button {
     margin: 0 !important;
+    border-radius: 7px !important;
 }
 
 @media (max-width: 550px) {

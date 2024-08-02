@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import prisma from "../../../hooks/prisma";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { Button, Input, Divider } from "semantic-ui-react";
+import { Segment, Button, Input, Divider } from "semantic-ui-react";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
@@ -40,26 +40,42 @@ export default function AboutEdit({ user }) {
   }
 
   return (
-    <div>
+    <Segment>
       <Head>
         <title>{`소개 | ${sliceEmail}`}</title>
       </Head>
-      <Divider />
-      {!loading ? (
-        <Button onClick={onClickAbout}>저장하기</Button>
-      ) : (
-        <Button loading>저장하기</Button>
-      )}
-      <Divider />
       <ReactQuill
-        placeholder="About"
+        placeholder="About..."
         theme="snow"
         value={about}
         onChange={setAbout}
         modules={modules}
         formats={formats}
       />
-    </div>
+      <div
+        style={{ marginTop: "30px", marginBottom: "15px", textAlign: "center" }}
+      >
+        {!loading ? (
+          <Button
+            style={{ borderRadius: "7px" }}
+            size="massive"
+            primary
+            onClick={onClickAbout}
+          >
+            저장하기
+          </Button>
+        ) : (
+          <Button
+            style={{ borderRadius: "7px" }}
+            size="massive"
+            primary
+            loading
+          >
+            저장하기
+          </Button>
+        )}
+      </div>
+    </Segment>
   );
 }
 
