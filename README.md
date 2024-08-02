@@ -4,6 +4,10 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 
 :ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-service.vercel.app">Next-Blog Home</a>
 
+:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-service.vercel.app/yhujblog">개발 정보 블로그 샘플</a>
+
+:ballot_box_with_check: <a target="_blank" rel="noopener noreferrer" href="https://next-blog-service.vercel.app/yanniwilla">여행 정보 블로그 샘플</a>
+
 ## Built With
 
 <p>
