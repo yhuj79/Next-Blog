@@ -94,3 +94,7 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 [https://12ahn22.tistory.com/entry/Quill-%EC%97%90%EB%94%94%ED%84%B0-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0](https://12ahn22.tistory.com/entry/Quill-%EC%97%90%EB%94%94%ED%84%B0-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0)
 
 [https://darrengwon.tistory.com/677](https://darrengwon.tistory.com/677)
+
+[https://yhuj79.github.io/Next/221213](https://yhuj79.github.io/Next/221213)
+
+[https://yhuj79.github.io/React/230214](https://yhuj79.github.io/React/230214)
