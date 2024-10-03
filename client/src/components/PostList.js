@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import styles from "../../styles/PostList.module.css";
 import Edit from "./Edit";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function PostList({
   id,
@@ -29,7 +30,14 @@ export default function PostList({
     >
       <Item.Group divided style={{ display: "flex" }}>
         <Item>
-          <img className={styles.thumbnail} src={thumbnail} alt={id} />
+          <Image
+            className={styles.thumbnail}
+            src={thumbnail}
+            alt={id}
+            loading="lazy"
+            width={10000}
+            height={10000}
+          />
           <Item.Content>
             <div className={styles.content_top}>
               <Item.Extra className={styles.label}>

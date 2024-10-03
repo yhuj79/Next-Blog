@@ -53,6 +53,14 @@ export async function getServerSideProps(context) {
     where: {
       email: `${context.params.email}@gmail.com`,
     },
+    select: {
+      id: true,
+      title: true,
+      thumbnail: true,
+      category: true,
+      desc: true,
+      createdAt: true,
+    },
   });
 
   function sortDate(list) {
