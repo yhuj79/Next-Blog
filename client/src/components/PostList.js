@@ -35,8 +35,8 @@ export default function PostList({
             src={thumbnail}
             alt={id}
             loading="lazy"
-            width={10000}
-            height={10000}
+            width={200}
+            height={200}
           />
           <Item.Content>
             <div className={styles.content_top}>
