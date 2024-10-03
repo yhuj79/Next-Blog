@@ -11,7 +11,7 @@
 
 .thumbnail {
     width: 260px;
-    height: 100%;
+    height: 130px;
     object-fit: cover;
     border: 1px solid #DBDBDB;
     border-radius: 7px;
