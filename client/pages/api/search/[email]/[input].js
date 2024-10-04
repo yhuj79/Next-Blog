@@ -1,5 +1,5 @@
 import prisma from "../../../../lib/prisma";
-import { sortDate } from "../../utils/sortDate";
+import { sortDate } from "../../../../utils/sortDate";
 
 export default async function ApiSearch(req, res) {
   const email = req.query.email;
