@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import prisma from "../../../hooks/prisma";
-import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import prisma from "../../../lib/prisma";
 import { Segment, Button, Input, Divider } from "semantic-ui-react";
+import "react-quill/dist/quill.snow.css";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,

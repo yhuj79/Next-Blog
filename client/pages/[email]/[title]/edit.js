@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import prisma from "../../../lib/prisma";
 import Quill from "../../../src/components/Quill";
-import prisma from "../../../hooks/prisma";
 
 export default function Edit({ existingContents }) {
   const router = useRouter();
   const { id, email, title } = router.query;
-console.log(email)
+
   const [loading, setLoading] = useState(false);
 
   async function handler(body) {
@@ -30,7 +30,11 @@ console.log(email)
       <Head>
         <title>{`글 수정 | ${email}`}</title>
       </Head>
-      <Quill handler={handler} loading={loading} existingContents={existingContents} />
+      <Quill
+        handler={handler}
+        loading={loading}
+        existingContents={existingContents}
+      />
     </div>
   );
 }

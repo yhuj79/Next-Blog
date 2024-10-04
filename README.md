@@ -57,7 +57,7 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 ### :page_facing_up: API
 
 - [Schema](https://github.com/yhuj79/Next-Blog/blob/main/client/prisma/schema.prisma) ([Prisma schema 가이드라인](https://www.prisma.io/docs/concepts/components/prisma-schema)을 따름)
-- [Prisma Client](https://github.com/yhuj79/Next-Blog/blob/main/client/hooks/prisma.js)
+- [Prisma Client](https://github.com/yhuj79/Next-Blog/blob/main/client/lib/prisma.js)
 - [NextAuth](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/auth/%5B...nextauth%5D.js) (Google 로그인 연동)
 - [새 글 작성](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/post/postWrite.js)
 - [글 수정](https://github.com/yhuj79/Next-Blog/blob/main/client/pages/api/post/edit/%5Bid%5D.js)
@@ -75,6 +75,10 @@ Google 계정으로 간편하게 생성하는 블로그 플랫폼
 - [x] react-markdown
 - [x] next-auth
 - [x] dompurify
+
+## Improvement
+
+- [페이지 성능 개선](https://github.com/yhuj79/Next-Blog/wiki/%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%84%B1%EB%8A%A5-%EA%B0%9C%EC%84%A0)
 
 ## Reference
 

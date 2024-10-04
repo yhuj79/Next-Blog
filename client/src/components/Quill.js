@@ -1,13 +1,13 @@
-import { storage } from "../../hooks/firebase";
-import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { Button, Input, Segment, Card, Icon } from "semantic-ui-react";
-import styles from "../../styles/Quill.module.css";
+import { uploadBytes, getDownloadURL, ref } from "firebase/storage";
+import { storage } from "../../lib/firebase";
 import Spinner from "./Spinner";
+import { Button, Input, Segment, Card, Icon } from "semantic-ui-react";
+import "react-quill/dist/quill.snow.css";
+import styles from "../../styles/Quill.module.css";
 
 const ReactQuill = dynamic(
   async () => {

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
 import Head from "next/head";
 import { Icon, Button, Header, Segment } from "semantic-ui-react";
 import styles from "../../styles/Info.module.css";

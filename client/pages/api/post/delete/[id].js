@@ -1,4 +1,4 @@
-import prisma from "../../../../hooks/prisma";
+import prisma from "../../../../lib/prisma";
 
 export default async function ApiPostDelete(req, res) {
   if (req.method === "DELETE") {

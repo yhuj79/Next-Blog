@@ -1,4 +1,4 @@
-import prisma from "../../../hooks/prisma";
+import prisma from "../../../lib/prisma";
 
 export default async function ApiAboutEdit(req, res) {
   if (req.method === "POST") {

@@ -1,9 +1,9 @@
-import { Segment, Divider, Header, Label } from "semantic-ui-react";
 import { useSession } from "next-auth/react";
 import DOMPurify from "isomorphic-dompurify";
+import Edit from "./Edit";
+import { Segment, Divider, Header, Label } from "semantic-ui-react";
 import "react-quill/dist/quill.core.css";
 import styles from "../../styles/PostGrid.module.css";
-import Edit from "./Edit";
 
 export default function PostGrid({ postContents }) {
   const { data: session, status } = useSession();

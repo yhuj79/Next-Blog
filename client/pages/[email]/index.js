@@ -1,11 +1,12 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import prisma from "../../lib/prisma";
+import { sortDate } from "../../utils/sortDate";
 import Spinner from "../../src/components/Spinner";
 import PostList from "../../src/components/PostList";
-import prisma from "../../hooks/prisma";
 import EmptySpace from "../../src/components/EmptySpace";
-import { Segment } from "semantic-ui-react";
 import Category from "../../src/components/Category";
+import { Segment } from "semantic-ui-react";
 
 export default function PostAll({ postAll, email }) {
   const router = useRouter();
@@ -74,15 +75,6 @@ export async function getStaticProps({ params }) {
       createdAt: true,
     },
   });
-
-  function sortDate(list) {
-    const sorted_list = list
-      .sort(function (a, b) {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      })
-      .reverse();
-    return sorted_list;
-  }
 
   if (user.length > 0) {
     const email = params.email;

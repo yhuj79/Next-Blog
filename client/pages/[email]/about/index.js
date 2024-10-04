@@ -1,21 +1,21 @@
-import Head from "next/head";
 import { useState } from "react";
+import Head from "next/head";
 import { useRouter } from "next/router";
-import Spinner from "../../../src/components/Spinner";
-import { Segment, Divider, Button, Header, Icon } from "semantic-ui-react";
-import DOMPurify from "isomorphic-dompurify";
-import "react-quill/dist/quill.core.css";
 import { useSession } from "next-auth/react";
-import prisma from "../../../hooks/prisma";
-import styles from "../../../styles/Edit.module.css";
+import DOMPurify from "isomorphic-dompurify";
+import prisma from "../../../lib/prisma";
+import Spinner from "../../../src/components/Spinner";
 import EmptySpace from "../../../src/components/EmptySpace";
+import { Segment, Divider, Button, Header, Icon } from "semantic-ui-react";
+import styles from "../../../styles/Edit.module.css";
+import "react-quill/dist/quill.core.css";
 
 export default function About({ user, email }) {
   const router = useRouter();
   const { data: session, status } = useSession();
 
   const [loading, setLoading] = useState();
-  
+
   return (
     <Segment>
       <Head>
@@ -58,18 +58,31 @@ export default function About({ user, email }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
+  return {
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+      },
+    })),
+    fallback: "blocking",
+  };
+}
+
+export async function getStaticProps({ params }) {
   const user = await prisma.user.findMany({
     where: {
-      email: `${context.params.email}@gmail.com`,
+      email: `${params.email}@gmail.com`,
     },
   });
-  const email = context.params.email;
+  const email = params.email;
 
   if (user.length > 0) {
-    const email = context.params.email;
+    const email = params.email;
     return {
       props: { user, email },
+      revalidate: 1,
     };
   } else {
     return {

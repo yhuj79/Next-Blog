@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { unescape } from "querystring";
+import prisma from "../../../lib/prisma";
 import Spinner from "../../../src/components/Spinner";
 import PostGrid from "../../../src/components/PostGrid";
-import prisma from "../../../hooks/prisma";
-import { unescape } from "querystring";
 
 export default function PostContents({ postContents, title }) {
   const router = useRouter();

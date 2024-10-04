@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import { Segment, Item, Label, Button, Icon, Loader } from "semantic-ui-react";
-import { useSession } from "next-auth/react";
-import styles from "../../styles/PostList.module.css";
-import Edit from "./Edit";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Edit from "./Edit";
+import { Segment, Item, Label, Button, Icon, Loader } from "semantic-ui-react";
+import styles from "../../styles/PostList.module.css";
 
 export default function PostList({
   id,

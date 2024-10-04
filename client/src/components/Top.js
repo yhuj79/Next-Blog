@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useMediaQuery } from "react-responsive";
 import {
   Image,
   Header,
@@ -7,12 +12,7 @@ import {
   Segment,
   Loader,
 } from "semantic-ui-react";
-import { useMediaQuery } from "react-responsive";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
 import styles from "../../styles/Top.module.css";
-import { useEffect, useState } from "react";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);

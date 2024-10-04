@@ -1,17 +1,9 @@
-import prisma from "../../../../hooks/prisma";
+import prisma from "../../../../lib/prisma";
+import { sortDate } from "../../utils/sortDate";
 
 export default async function ApiSearch(req, res) {
   const email = req.query.email;
   const input = req.query.input;
-
-  function sortDate(list) {
-    const sorted_list = list
-      .sort(function (a, b) {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      })
-      .reverse();
-    return sorted_list;
-  }
 
   if (req.method === "GET") {
     const post = await prisma.post.findMany({

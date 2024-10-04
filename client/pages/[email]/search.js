@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Button, Header, Input, Segment } from "semantic-ui-react";
 import PostList from "../../src/components/PostList";
+import { Button, Header, Input, Segment } from "semantic-ui-react";
 import styles from "../../styles/EmptySpace.module.css";
 
 export default function search() {
