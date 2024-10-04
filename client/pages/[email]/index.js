@@ -42,16 +42,28 @@ export default function PostAll({ postAll, email }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticPaths() {
+  const user = await prisma.user.findMany();
+  return {
+    paths: user.map((m) => ({
+      params: {
+        email: m.email,
+      },
+    })),
+    fallback: "blocking",
+  };
+}
+
+export async function getStaticProps({ params }) {
   const user = await prisma.user.findMany({
     where: {
-      email: `${context.params.email}@gmail.com`,
+      email: `${params.email}@gmail.com`,
     },
   });
 
   const post = await prisma.post.findMany({
     where: {
-      email: `${context.params.email}@gmail.com`,
+      email: `${params.email}@gmail.com`,
     },
     select: {
       id: true,
@@ -73,10 +85,11 @@ export async function getServerSideProps(context) {
   }
 
   if (user.length > 0) {
-    const email = context.params.email;
+    const email = params.email;
     const postAll = sortDate(JSON.parse(JSON.stringify(post)));
     return {
       props: { postAll, email },
+      revalidate: 1,
     };
   } else {
     return {
